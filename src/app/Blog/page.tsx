@@ -135,7 +135,7 @@ const BlogPage = () => {
                 malesuada vitae ultrices in in neque, porta dignissim.
               </p>
               <a
-                href="#"
+                href="/Blog/page1"
                 className="text-purple-600 font-medium hover:underline mt-4 block"
               >
                 Read More
