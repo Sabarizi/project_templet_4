@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Navbar from "./compunents/Navbar"; // Adjust path based on folder structure
+import Footer from "./compunents/Footer"; // Adjust path based on folder structure
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Navbar /> {/* Navbar will render at the top */}
+        <main>{children}</main> {/* Content from individual pages */}
+       <Footer /> {/* Footer will render at the bottom */}
+      </body>
     </html>
   );
 }
