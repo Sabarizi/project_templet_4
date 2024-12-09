@@ -13,10 +13,12 @@ export default function TopCategories() {
         <div className="w-56 flex flex-col items-center">
           <div className="relative">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center relative border-4 border-purple-500">
-              <img
+              <Image
                 src="/top.png" // Replace with actual image path
                 className="w-20 h-20 md:w-28 md:h-28 object-contain"
                 alt="Top Category"
+                height={345}
+                width={269}
               />
             </div>
             <button className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm">
@@ -32,9 +34,11 @@ export default function TopCategories() {
         {/* Category Item 2 */}
         <div className="w-56 flex flex-col items-center">
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center">
-            <img
+            <Image
               src="/image 1168.png" // Replace with actual image path
               alt="Mini LCW Chair"
+              height={345}
+              width={269}
               className="w-20 h-20 md:w-28 md:h-28 object-contain"
             />
           </div>
@@ -47,9 +51,11 @@ export default function TopCategories() {
         {/* Category Item 3 */}
         <div className="w-56 flex flex-col items-center">
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center">
-            <img
+            <Image
               src="/box for image.png" // Replace with actual image path
               alt="Mini LCW Chair"
+              height={345}
+              width={269}
               className="w-20 h-20 md:w-28 md:h-28 object-contain"
             />
           </div>
@@ -65,8 +71,8 @@ export default function TopCategories() {
             <Image
               src="/top.png" // Replace with actual image path
               alt="Mini LCW Chair"
-              width={178}
-              height={178}
+              height={345}
+                width={269}
               className="w-20 h-20 md:w-28 md:h-28 object-contain"
             />
           </div>
