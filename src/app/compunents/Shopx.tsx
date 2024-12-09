@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const ShopexOffer = () => {
@@ -45,9 +46,11 @@ const ShopexOffer = () => {
             >
               {/* Icon */}
               <div className="w-16 h-16 mb-4">
-                <img
+                <Image
                   src={offer.icon}
                   alt={offer.title}
+                  height={65}
+                  width={65}
                   className="object-contain w-full h-full"
                 />
               </div>
