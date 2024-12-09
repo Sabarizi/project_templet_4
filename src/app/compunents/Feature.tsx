@@ -1,7 +1,3 @@
-
-
-
-
 "use client";
 
 import React from "react";
@@ -43,7 +39,7 @@ const FeaturedProducts = () => {
   return (
     <section className="py-12 mt-12">
       <h2 className="text-3xl font-bold text-center mb-8">Featured Products</h2>
-      <div className="grid grid-cols-1 max-w-8xl mx-auto sm:grid-cols-2 md:grid-cols-4 gap-6 pl-40 pr-40">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 sm:px-6 md:px-8 lg:px-40">
         {products.map((product, index) => (
           <div
             key={product.id}
@@ -51,7 +47,7 @@ const FeaturedProducts = () => {
           >
             {index === 1 && (
               <>
-                <div className="flex justify-left top-4 right-4 flex gap-2 text-blue-500">
+                <div className="flex justify-end top-4 right-4 gap-2 text-blue-500">
                   <ShoppingCartIcon className="h-5 w-5 cursor-pointer hover:text-blue-700" />
                   <HeartIcon className="h-5 w-5 cursor-pointer hover:text-blue-700" />
                   <SearchIcon className="h-5 w-5 cursor-pointer hover:text-blue-700" />
@@ -73,7 +69,7 @@ const FeaturedProducts = () => {
                 </button>
 
                 {/* Product Details */}
-                <div className="text-center mt-2 bg-blue-700 space-y-2">
+                <div className="text-center mt-2 bg-blue-700 space-y-2 p-4">
                   <h3 className="text-lg font-semibold text-white">
                     {product.name}
                   </h3>
@@ -109,8 +105,9 @@ const FeaturedProducts = () => {
                   <h3 className="text-lg font-semibold text-gray-800">
                     {product.name}
                   </h3>
-                   {/* Color Line */}
-                   <div className="flex justify-center gap-1 my-2">
+
+                  {/* Color Line */}
+                  <div className="flex justify-center gap-1 my-2">
                     <div className="w-4 h-1 bg-green-500 rounded"></div>
                     <div className="w-4 h-1 bg-pink-500 rounded"></div>
                     <div className="w-4 h-1 bg-blue-500 rounded"></div>

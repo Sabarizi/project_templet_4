@@ -1,12 +1,11 @@
-"use client";
+"use client"; 
 
 import { useState } from "react";
 import { MdOutlineEmail } from 'react-icons/md';
-import { FaPhoneVolume, FaChevronDown, FaRegHeart, } from 'react-icons/fa6';
+import { FaPhoneVolume, FaChevronDown, FaRegHeart } from 'react-icons/fa6';
 import { LuShoppingCart } from 'react-icons/lu';
 import { GoPerson } from 'react-icons/go';
 import { FaSearch } from "react-icons/fa";
-
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,7 +69,7 @@ const Navbar = () => {
             {/* Links */}
             <div className="hidden sm:flex space-x-6">
               <a href="/" className="text-gray-900 hover:text-purple-600">Home</a>
-              <a href="/product" className="text-gray-900 hover:text-purple-600">Products</a>
+              <a href="/ProductDetail" className="text-gray-900 hover:text-purple-600">Products</a>
               <a href="/Blog" className="text-gray-900 hover:text-purple-600">Blog</a>
               <a href="/Contact" className="text-gray-900 hover:text-purple-600">Contact</a>
               <a href="/Shop" className="text-gray-900 hover:text-purple-600">Shop</a>
