@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               className="p-3 rounded-md border border-gray-300"
             />
             <button className="bg-pink-500 text-white px-6 py-3 rounded-md font-semibold">
-            <a href='/SignUp'>Sign Up</a> 
+            <a href='/Login'>Sign Up</a> 
             </button>
           </div>
           <p className="text-sm text-gray-600 mt-4">

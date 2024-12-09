@@ -109,7 +109,7 @@ const Navbar = () => {
         <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden bg-white`}>
           <div className="px-4 py-2 space-y-2">
             <a href="/" className="block text-gray-900 hover:bg-gray-200 py-2">Home</a>
-            <a href="/product" className="block text-gray-900 hover:bg-gray-200 py-2">Products</a>
+            <a href="/ProductDetail" className="block text-gray-900 hover:bg-gray-200 py-2">Products</a>
             <a href="/Blog" className="block text-gray-900 hover:bg-gray-200 py-2">Blog</a>
             <a href="/Contact" className="block text-gray-900 hover:bg-gray-200 py-2">Contact</a>
             <a href="/Shop" className="block text-gray-900 hover:bg-gray-200 py-2">Shop</a>
