@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function ContactUs() {
   return (
     <div className="min-h-screen bg-gray-50 py-10">
@@ -100,9 +101,11 @@ export default function ContactUs() {
 
         {/* Right Section - Image */}
         <div className="flex justify-center items-center">
-          <img
+          <Image
             src="/contact.png" // Replace this with your actual image path
             alt="Contact Us Illustration"
+            height={692}
+            width={723}
             className="w-full max-w-md rounded-full shadow-lg"
           />
         </div>

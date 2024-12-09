@@ -1,3 +1,4 @@
+import Image from "next/image";
 export default function TopCategories() {
   return (
     <div className="text-center py-10">
@@ -61,9 +62,11 @@ export default function TopCategories() {
         {/* Category Item 4 */}
         <div className="w-56 flex flex-col items-center">
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center">
-            <img
+            <Image
               src="/top.png" // Replace with actual image path
               alt="Mini LCW Chair"
+              width={178}
+              height={178}
               className="w-20 h-20 md:w-28 md:h-28 object-contain"
             />
           </div>

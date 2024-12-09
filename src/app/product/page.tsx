@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Product = () => {
   const products = [
@@ -174,9 +175,11 @@ const Product = () => {
               >
                 {/* Product Image */}
                 <div className="mb-4">
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.title}
+                    width={201}
+                    height={201}
                     className="w-full h-32 object-contain rounded-md"
                   />
                 </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ShoppingCartIcon, HeartIcon, SearchIcon } from "@heroicons/react/outline";
 
 const LatestProducts: React.FC = () => {
@@ -83,9 +84,11 @@ const LatestProducts: React.FC = () => {
             >
               {/* Product Image */}
               <div className="w-full h-60 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
+                  width={360}
+                  height={306}
                   className="object-contain h-full"
                 />
               </div>
@@ -93,7 +96,7 @@ const LatestProducts: React.FC = () => {
               {/* Sale Badge */}
               {product.sale && index === 1 && (
                 <div className="absolute top-4 left-4">
-                  <img src="/Group 27.png" alt="Sale Badge" />
+                  <Image src="/Group 27.png" alt="Sale Badge" width={65} height={65} />
                   <div className="absolute top-5 left-4 w-16 h-6 text-white text-xs font-semibold flex items-center justify-center transform -rotate-12">
                     Sale
                   </div>

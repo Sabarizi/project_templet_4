@@ -15,30 +15,30 @@ export default function ProductDetails() {
           <Image
             src="/Rectangle 138.png"
             alt="Main Product"
-            width={500}
-            height={500}
+            width={375}
+            height={487}
             className="rounded-lg"
           />
           <div className="grid grid-cols-1 gap-2">
             <Image
               src="/Rectangle 134.png"
               alt="Thumbnail 1"
-              width={100}
-              height={100}
+              width={151}
+              height={155}
               className="rounded-lg"
             />
             <Image
               src="/Rectangle 136.png"
               alt="Thumbnail 2"
-              width={100}
-              height={100}
+              width={151}
+              height={155}
               className="rounded-lg"
             />
             <Image
               src="/Rectangle 137.png"
               alt="Thumbnail 3"
-              width={100}
-              height={100}
+              width={151}
+              height={155}
               className="rounded-lg"
             />
           
@@ -95,8 +95,8 @@ export default function ProductDetails() {
             <Image
               src="/Rectangle 128.png"
               alt="Related Product 1"
-              width={200}
-              height={200}
+              width={270}
+              height={340}
               className="rounded-lg"
             />
             <h3 className="text-gray-800 mt-2">Men's Fashion</h3>
@@ -106,8 +106,8 @@ export default function ProductDetails() {
             <Image
               src="/Group 233.png"
               alt="Related Product 2"
-              width={200}
-              height={200}
+              width={270}
+              height={340}
               className="rounded-lg"
             />
             <h3 className="text-gray-800 mt-2">Women's Fashion</h3>
@@ -117,8 +117,8 @@ export default function ProductDetails() {
             <Image
               src="/Rectangle 130.png"
               alt="Related Product 3"
-              width={200}
-              height={200}
+              width={270}
+              height={340}
               className="rounded-lg"
             />
             <h3 className="text-gray-800 mt-2">Kids' Disney Fashion</h3>
@@ -128,8 +128,8 @@ export default function ProductDetails() {
             <Image
               src="/Rectangle 131.png"
               alt="Related Product 4"
-              width={200}
-              height={200}
+              width={270}
+              height={340}
               className="rounded-lg"
             />
             <h3 className="text-gray-800 mt-2">Top Wall Digital Clock</h3>

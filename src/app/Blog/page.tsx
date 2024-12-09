@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 const BlogPage = () => {
   return (
     <div className="min-h-screen bg-purple-50">
@@ -14,7 +14,7 @@ const BlogPage = () => {
         {/* Blog Section */}
         <section className="md:col-span-3">
           <article className="bg-white shadow rounded-lg overflow-hidden">
-            <img src="/blog1.png" alt="Blog" className="w-full" />
+            <Image src="/blog1.png" alt="Blog"  height={453} width={870}  className="w-full" />
             <div className="p-4">
               <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
                 <span className="flex items-center gap-1">
@@ -78,35 +78,43 @@ const BlogPage = () => {
                 
               <li className="flex items-center space-x-2 text-sm text-gray-600">
                 
-                <img
+                <Image
                   src="/blog4.png"
                   alt="Recent"
+                  height={70}
+                    width={51}
                   className="w-10 h-10 rounded object-cover"
                 />
                 <h1>Its is a long established fact<br/>Aug 09 2022</h1>
                
               </li>
               <li className="flex items-center space-x-2 text-sm text-gray-600">
-                <img
+                <Image
                   src="/blog5.png"
                   alt="Recent"
+                  height={70}
+                  width={51}
                   className="w-10 h-10 rounded object-cover"
                 />
                     <h1>Its is a long established fact<br/>Aug 09 2022</h1>
               </li>
               
               <li className="flex items-center space-x-2 text-sm text-gray-600">
-                <img
+                <Image
                   src="/blog6.png"
                   alt="Recent"
+                  height={70}
+                  width={51}
                   className="w-10 h-10 rounded object-cover"
                 />
                     <h1>Its is a long established fact<br/>Aug 09 2022</h1>
               </li>
               <li className="flex items-center space-x-2 text-sm text-gray-600">
-                <img
+                <Image
                   src="/blog7.png"
                   alt="Recent"
+                  height={70}
+                  width={51}
                   className="w-10 h-10 rounded object-cover"
                 />
                     <h1>Its is a long established fact<br/>Aug 09 2022</h1>
@@ -118,7 +126,7 @@ const BlogPage = () => {
         {/* Blog Section */}
         <section className="md:col-span-3">
           <article className="bg-white shadow rounded-lg overflow-hidden">
-            <img src="blog2.png" alt="Blog" className="w-full" />
+            <img src="blog2.png" alt="Blog"  height={453} width={870}  className="w-full" />
             <div className="p-4">
               <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
                 <span className="flex items-center gap-1">
@@ -152,27 +160,33 @@ const BlogPage = () => {
                 
                 <li className="flex items-center space-x-2 text-sm text-gray-600">
                   
-                  <img
+                  <Image
                     src="/blog8.png"
                     alt="Recent"
+                    height={70}
+                    width={51}
                     className="w-10 h-10 rounded object-cover"
                   />
                   <h1>Elit ornare in enim mauris<br/>Aug 09 2022</h1>
                  
                 </li>
                 <li className="flex items-center space-x-2 text-sm text-gray-600">
-                  <img
+                  <Image
                     src="/blog9.png"
                     alt="Recent"
+                    height={70}
+                    width={51}
                     className="w-10 h-10 rounded object-cover"
                   />
                       <h1>Viverra pulvinar et enim<br/>Aug 09 2022</h1>
                 </li>
                 
                 <li className="flex items-center space-x-2 text-sm text-gray-600">
-                  <img
+                  <Image
                     src="/blog10.png"
                     alt="Recent"
+                    height={70}
+                    width={51}
                     className="w-10 h-10 rounded object-cover"
                   />
                       <h1>Mattis varius donec fd<br/>Aug 09 2022</h1>
@@ -184,7 +198,7 @@ const BlogPage = () => {
         {/* Blog Section */}
         <section className="md:col-span-3">
           <article className="bg-white shadow rounded-lg overflow-hidden">
-            <img src="/blog3.png" alt="Blog" className="w-full" />
+            <Image src="/blog3.png" alt="Blog" height={453} width={870} className="w-full" />
             <div className="p-4">
               <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
                 <span className="flex items-center gap-1">
