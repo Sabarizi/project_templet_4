@@ -126,7 +126,7 @@ const BlogPage = () => {
         {/* Blog Section */}
         <section className="md:col-span-3">
           <article className="bg-white shadow rounded-lg overflow-hidden">
-            <img src="blog2.png" alt="Blog"  height={453} width={870}  className="w-full" />
+            <Image src="blog2.png" alt="Blog"  height={453} width={870}  className="w-full" />
             <div className="p-4">
               <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
                 <span className="flex items-center gap-1">

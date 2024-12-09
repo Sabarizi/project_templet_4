@@ -53,7 +53,7 @@ export default function ProductDetails() {
             <span className="text-red-500">$150</span>
           </div>
           <p className="text-gray-600 mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
             nihil pariatur quas id voluptatem.
           </p>
           <div className="mt-4">
@@ -76,13 +76,13 @@ export default function ProductDetails() {
         <div className="mt-4 text-gray-600">
           <h2 className="text-lg font-semibold">Various Tempers</h2>
           <p className="mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
-            debitis error iusto, ex ducimus maiores.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
+            debitis error iusto ex ducimus maiores.
           </p>
           <ul className="mt-4 space-y-2">
             <li>✔ Lorem ipsum dolor sit amet consectetur.</li>
-            <li>✔ Ex ducimus maiores iusto, ex facilis debitis.</li>
-            <li>✔ Facilis debitis error iusto, ex ducimus.</li>
+            <li>✔ Ex ducimus maiores iusto ex facilis debitis.</li>
+            <li>✔ Facilis debitis error iusto ex ducimus.</li>
           </ul>
         </div>
       </div>
@@ -99,7 +99,7 @@ export default function ProductDetails() {
               height={340}
               className="rounded-lg"
             />
-            <h3 className="text-gray-800 mt-2">Men's Fashion</h3>
+            <h3 className="text-gray-800 mt-2">Mens Fashion</h3>
             <p className="text-gray-500">$40</p>
           </div>
           <div className="text-center">
@@ -110,7 +110,7 @@ export default function ProductDetails() {
               height={340}
               className="rounded-lg"
             />
-            <h3 className="text-gray-800 mt-2">Women's Fashion</h3>
+            <h3 className="text-gray-800 mt-2">Womens Fashion</h3>
             <p className="text-gray-500">$30</p>
           </div>
           <div className="text-center">
@@ -121,7 +121,7 @@ export default function ProductDetails() {
               height={340}
               className="rounded-lg"
             />
-            <h3 className="text-gray-800 mt-2">Kids' Disney Fashion</h3>
+            <h3 className="text-gray-800 mt-2">Kids Disney Fashion</h3>
             <p className="text-gray-500">$50</p>
           </div>
           <div className="text-center">
