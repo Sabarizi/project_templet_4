@@ -133,6 +133,7 @@ const LatestProducts: React.FC = () => {
                     </button>
                   </div>
                 </div>
+                
               )}
             </div>
           ))}

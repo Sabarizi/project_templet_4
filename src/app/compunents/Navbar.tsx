@@ -9,18 +9,22 @@ import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // For Home dropdown
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <>
-      {/* First Navbar (Purple with Contact Info) */}
+      {/* First Navbar */}
       <div className="bg-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between h-auto sm:h-16 py-2">
-            {/* Contact Info */}
             <div className="flex space-x-4 text-white text-sm font-semibold mb-2 sm:mb-0">
               <div className="flex items-center space-x-2">
                 <MdOutlineEmail className="text-lg" />
@@ -31,44 +35,55 @@ const Navbar = () => {
                 <span>(12345)67890</span>
               </div>
             </div>
-
-            {/* Wishlist, Cart, Language, and Currency */}
             <div className="flex items-center space-x-4">
-              <div className="hidden sm:flex items-center space-x-2 text-white">
-                <span>English</span>
-                <FaChevronDown />
-              </div>
-              <div className="hidden sm:flex items-center space-x-2 text-white">
-                <span>USD</span>
-                <FaChevronDown />
-              </div>
-              <a href="/Login" className="flex items-center text-white space-x-2">
-                <GoPerson />
-                <span>Log in</span>
-              </a>
-              <a href="/product" className="flex items-center text-white space-x-2">
-                <FaRegHeart />
-                <span>Wishlist</span>
-              </a>
-              <a href="/Cart" className="flex items-center text-white space-x-2">
-                <LuShoppingCart />
-                <span>Cart</span>
-              </a>
+            <button 
+                  className="text-white  flex items-center"
+                
+                >
+                  English
+                  <FaChevronDown className="ml-1 text-xs" />
+                </button>
+
+                <button 
+                  className="text-white flex items-center"
+                
+                >
+                  USD
+                  <FaChevronDown className="ml-1 text-xs" />
+                </button>
+              <a href="/Login" className="text-white flex py-2">Log in </a> <span className="text-white"><GoPerson /> </span>
+              <a href="/product" className="text-white">Wishlist</a><span className="text-white"> <FaRegHeart /> </span>
+              <a href="/Cart" className="text-white">Cart</a><span className="text-white"><LuShoppingCart/> </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Second Navbar (White with Navigation and Search) */}
+      {/* Second Navbar */}
       <div className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
             <h1 className="text-2xl font-serif">Hekto</h1>
 
             {/* Links */}
             <div className="hidden sm:flex space-x-6">
-              <a href="/" className="text-gray-900 hover:text-purple-600">Home</a>
+              {/* Dropdown Menu for Home */}
+              <div className="relative">
+                <button 
+                  className="text-pink-500 hover:text-pink-600 flex items-center"
+                  onClick={toggleDropdown}
+                >
+                  Home
+                  <FaChevronDown className="ml-1 text-xs text-pink-500" />
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute left-0 mt-2 bg-white border shadow-lg rounded-md w-40">
+                    <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Home</a>
+                    <a href="/About Us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">About Us</a>
+                    <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Home 3</a>
+                  </div>
+                )}
+              </div>
               <a href="/ProductDetail" className="text-gray-900 hover:text-purple-600">Products</a>
               <a href="/Blog" className="text-gray-900 hover:text-purple-600">Blog</a>
               <a href="/Contact" className="text-gray-900 hover:text-purple-600">Contact</a>
@@ -108,7 +123,22 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden bg-white`}>
           <div className="px-4 py-2 space-y-2">
-            <a href="/" className="block text-gray-900 hover:bg-gray-200 py-2">Home</a>
+            <div>
+              <button 
+                className="flex items-center w-full text-left text-gray-900 hover:bg-gray-200 py-2"
+                onClick={toggleDropdown}
+              >
+                Home
+                <FaChevronDown className="ml-1 text-xs" />
+              </button>
+              {isDropdownOpen && (
+                <div className="ml-4 space-y-2">
+                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home 1</a>
+                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home 2</a>
+                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home 3</a>
+                </div>
+              )}
+            </div>
             <a href="/ProductDetail" className="block text-gray-900 hover:bg-gray-200 py-2">Products</a>
             <a href="/Blog" className="block text-gray-900 hover:bg-gray-200 py-2">Blog</a>
             <a href="/Contact" className="block text-gray-900 hover:bg-gray-200 py-2">Contact</a>

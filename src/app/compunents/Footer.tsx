@@ -50,11 +50,13 @@ const Footer: React.FC = () => {
         <div>
           <h2 className="text-lg font-bold text-gray-800 mb-4">Pages</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>Blog</li>
+            <a href="/Blog">Blog</a>
             <li>Browse the Shop</li>
             <li>Category</li>
             <li>Pre-Built Pages</li>
-            <li>WooCommerce Pages</li>
+            <a href="/Faqs" className="hover:text-gray-800">
+                FAQs
+              </a>
           </ul>
         </div>
       </div>

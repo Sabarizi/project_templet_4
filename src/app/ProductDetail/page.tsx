@@ -4,12 +4,12 @@ export default function ProductDetails() {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
-      <div className="text-sm text-gray-500 mb-4">
+      <div className="text-sm text-black mb-4">
         <span>Home</span> &gt; <span>Pages</span> &gt; <span>Product Details</span>
       </div>
 
       {/* Product Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white py-11 px-11">
         {/* Images */}
         <div className="grid grid-cols-2 gap-4">
           <Image
@@ -47,10 +47,11 @@ export default function ProductDetails() {
 
         {/* Product Details */}
         <div>
-          <h1 className="text-2xl font-semibold">Playwood Arm Chair</h1>
-          <div className="text-gray-500 mt-2">
-            <span className="line-through">$200</span>{' '}
-            <span className="text-red-500">$150</span>
+          <h1 className="text-4xl font-semibold">Playwood Arm Chair</h1>
+          <div className="text-gray-500 mt-2 4xl">
+            
+            <span className="line-through 4xl:">$200</span>{' '}
+            <span className="text-red-500 4xl">$150</span>
           </div>
           <p className="text-gray-600 mt-4">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores

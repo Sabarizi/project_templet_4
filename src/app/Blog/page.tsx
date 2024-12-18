@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 const BlogPage = () => {
   return (
+    
     <div className="min-h-screen bg-purple-50">
       <header className=" p-5 bg-white shadow">
         <h1 className=" text-2xl font-bold">Blog Page</h1>
@@ -31,7 +32,7 @@ const BlogPage = () => {
                 malesuada vitae ultrices in in neque, porta dignissim.
               </p>
               <a
-                href="/page1"
+                href="/Blog1"
                 className="text-purple-600 font-medium hover:underline mt-4 block"
               >
                 Read More
@@ -126,7 +127,8 @@ const BlogPage = () => {
         {/* Blog Section */}
         <section className="md:col-span-3">
           <article className="bg-white shadow rounded-lg overflow-hidden">
-            <Image src="blog2.png" alt="Blog"  height={453} width={870}  className="w-full" />
+          <Image src="/blog2.png" alt="Blog" height={453} width={870} className="w-full" />
+
             <div className="p-4">
               <div className="flex justify-between items-center text-xs text-gray-500 mb-2">
                 <span className="flex items-center gap-1">
@@ -143,7 +145,7 @@ const BlogPage = () => {
                 malesuada vitae ultrices in in neque, porta dignissim.
               </p>
               <a
-                href="/Blog/page1"
+                href=""
                 className="text-purple-600 font-medium hover:underline mt-4 block"
               >
                 Read More
