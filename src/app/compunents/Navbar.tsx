@@ -79,8 +79,8 @@ const Navbar = () => {
                 {isDropdownOpen && (
                   <div className="absolute left-0 mt-2 bg-white border shadow-lg rounded-md w-40">
                     <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Home</a>
-                    <a href="/About Us" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">About Us</a>
-                    <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Home 3</a>
+                    <a href="/AboutUs" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">About Us</a>
+                    <a href="/ShopLeft" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">Shop Left Side</a>
                   </div>
                 )}
               </div>
@@ -133,9 +133,9 @@ const Navbar = () => {
               </button>
               {isDropdownOpen && (
                 <div className="ml-4 space-y-2">
-                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home 1</a>
-                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home 2</a>
-                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home 3</a>
+                  <a href="/" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Home </a>
+                  <a href="/AboutUs" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">About Us</a>
+                  <a href="/ShopLeft" className="block text-sm text-gray-700 hover:bg-gray-200 py-1">Shop LeftSide</a>
                 </div>
               )}
             </div>

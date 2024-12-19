@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
         <div>
           <h2 className="text-lg font-bold text-gray-800 mb-4">Categories</h2>
           <ul className="space-y-2 text-gray-600">
-            <li>Laptops & Computers</li>
+          <a href="/HacktoDemo">Hackto Demo</a>
             <li>Cameras & Photography</li>
             <li>Smart Phones & Tablets</li>
             <li>Video Games & Consoles</li>

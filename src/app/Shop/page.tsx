@@ -1,196 +1,264 @@
 import Image from "next/image";
+import Link from "next/link";
+import {
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+} from "react-icons/ai";
+import { FaSearch } from "react-icons/fa";
 
-export default function Home() {
-  const products = [
-    {
-      id: 1,
-      name: "Dictum Morbi",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      price: 26.0,
-      oldPrice: 52.0,
-      image: "/shop1.png", // Leading slash added
-      rating: 4,
-    },
-    {
-      id: 2,
-      name: "Sodales Sit",
-      description: "Magna in est adipiscing in phasellus non in justo.",
-      price: 26.0,
-      oldPrice: 52.0,
-      image: "/shop2.png",
-      rating: 5,
-    },
-    {
-      id: 3,
-      name: "Nibh Varius",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      price: 26.0,
-      oldPrice: 52.0,
-      image: "/shop3.png",
-      rating: 3,
-    },
-    {
-      id: 4,
-      name: "Mauris Quis",
-      description: "Magna in est adipiscing in phasellus non in justo.",
-      price: 26.0,
-      oldPrice: 52.0,
-      image: "/shop4.png",
-      rating: 4,
-    },
-    {
-      id: 5,
-      name: "Mauris Quis",
-      description: "Magna in est adipiscing in phasellus non in justo.",
-      price: 26.0,
-      oldPrice: 52.0,
-      image: "/shop5.png",
-      rating: 5,
-    },
-    {
-      id: 6,
-      name: "Mauris Quis",
-      description: "Magna in est adipiscing in phasellus non in justo.",
-      price: 26.0,
-      oldPrice: 52.0,
-      image: "/shop6.png",
-      rating: 2,
-    },
-  ];
+const shoplist = [
+  {
+    id: 1,
+    name: "Accumsan tincidunt",
+    image: "/Rectangle 32.png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "Consectetur adipiscing elit.",
+    rating: 4,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+  {
+    id: 2,
+    name: "In nulla",
+    image: "/Rectangle 32 (1).png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "Magna in est adipiscing in phasellus non in justo.",
+    rating: 5,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+  {
+    id: 3,
+    name: "Vel sem",
+    image: "/Rectangle 32 (2).png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "Lorem ipsum dolor sit amet.",
+    rating: 5,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+  {
+    id: 4,
+    name: "Porttitor cum",
+    image: "/Rectangle 32 (3).png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "Lorem ipsum dolor sit amet.",
+    rating: 5,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+  {
+    id: 5,
+    name: "Nunc in",
+    image: "/Rectangle 32 (4).png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "Lorem Magna in est adipiscing.",
+    rating: 5,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+  {
+    id: 6,
+    name: "Vitae facilisis",
+    image: "/Rectangle 32 (5).png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "consectetur adipiscing elit. Magna in.",
+    rating: 5,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+  {
+    id: 7,
+    name: "Curabitur lectus",
+    image: "/Rectangle 32 (7).png",
+    price: "$26.00",
+    oldPrice: "$52.00",
+    description: "Lorem ipsum dolor sit amet, consectetur.",
+    rating: 5,
+    colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
+  },
+];
 
+const ShopList = () => {
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <aside className="w-1/4 p-4 border-r bg-gray-100">
-        {/* Product Brand */}
-        <div className="mb-6">
-          <h2 className="text-lg font-bold mb-2">Product Brand</h2>
-          {["Coaster Furniture", "Fusion Dot High Fashion", "Unique Furniture Restoration"].map(
-            (brand) => (
-              <label key={brand} className="block mb-2">
-                <input type="checkbox" className="mr-2" />
-                {brand}
-              </label>
-            )
-          )}
+    <div className="font-sans text-[#151875]">
+      <div className="py-12 px-8 bg-purple-50 h-44">
+        <h1 className="max-w-6xl mx-auto text-4xl font-bold">Shop List</h1>
+        <div className="max-w-6xl mx-auto flex items-center gap-2">
+          <Link href={"/"}>Home</Link>
+          <p>Pages</p>
+          <p className="text-[#FB2E86]">Shopping List</p>
         </div>
-
-        {/* Discount Offer */}
-        <div className="mb-6">
-          <h2 className="text-lg font-bold mb-2">Discount Offer</h2>
-          {["20% Cashback", "5% Cashback Offer", "25% Discount Offer"].map((offer) => (
-            <label key={offer} className="block mb-2">
-              <input type="checkbox" className="mr-2" />
-              {offer}
-            </label>
-          ))}
-        </div>
-
-        {/* Rating Item */}
-        <div className="mb-6">
-          <h2 className="text-lg font-bold mb-2">Rating Item</h2>
-          {[5, 4, 3].map((stars, index) => (
-            <label key={index} className="flex items-center mb-2">
-              <input type="checkbox" className="mr-2" />
-              <span className="flex items-center">
-                {"★".repeat(stars)}
-                {"☆".repeat(5 - stars)}
-              </span>
-            </label>
-          ))}
-        </div>
-
-        {/* Categories */}
+      </div>
+      <div className="max-w-6xl mx-auto py-4 flex flex-col lg:flex-row justify-between px-8">
         <div>
-          <h2 className="text-lg font-bold mb-2">Categories</h2>
-          {["Prestashop", "Magento", "Bigcommerce", "osCommerce", "3dcart"].map((category) => (
-            <label key={category} className="block mb-2">
-              <input type="checkbox" className="mr-2" />
-              {category}
-            </label>
-          ))}
+          <h1 className="text-2xl font-semibold font-[Josefin Sans] mb-2">
+            Ecommerce Accessories & Fashion Items
+          </h1>
+          <p className="text-sm text-gray-500 mb-4">
+            About 9,620 results (0.62 seconds)
+          </p>
         </div>
-      </aside>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="perPage"
+              className="text-sm font-medium text-gray-700"
+            >
+              Per Page:
+            </label>
+            <input
+              type="text"
+              id="perPage"
+              className="w-16 p-1 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
+            />
+          </div>
 
-      {/* Product Grid */}
-      <main className="w-3/4 p-4">
-        <h1 className="text-2xl font-bold mb-4">Product Grid with Features</h1>
-        <div className="space-y-4">
-          {products.map((product) => (
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="sortBy"
+              className="text-sm font-medium text-gray-700"
+            >
+              Sort By:
+            </label>
+            <select
+              id="sortBy"
+              className="p-1 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
+            >
+              <option value="bestMatch">Best Match</option>
+              <option value="priceLowHigh">Price: Low to High</option>
+              <option value="priceHighLow">Price: High to Low</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="view"
+              className="text-sm font-medium focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
+            >
+              View:
+            </label>
+            <input
+              type="text"
+              id="view"
+              className="w-16 p-1 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-6xl mx-auto p-8">
+        <div className="space-y-6">
+          {shoplist.map((product) => (
             <div
               key={product.id}
-              className="flex items-center border p-4 bg-white rounded-lg shadow-md"
+              className="flex flex-col lg:flex-row bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
             >
-              {/* Product Image */}
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={284}
-                height={197}
-                className="w-1/3 h-40 object-cover rounded-md"
-              />
+              <div className="lg:w-1/3 flex-shrink-0">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={500}
+                  height={400}
+                  className="w-full h-48 object-cover rounded-lg"
+                />
+              </div>
 
-              {/* Product Details */}
-              <div className="ml-4 flex-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold">{product.name}</h3>
-                  {/* Colorful Dots */}
-                  <div className="flex space-x-2">
-                    <span className="w-3 h-3 bg-red-500 rounded-full"></span>
-                    <span className="w-3 h-3 bg-green-500 rounded-full"></span>
-                    <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
+              <div className="lg:w-2/3 lg:ml-6 mt-4 lg:mt-0">
+                <div className="w-full flex justify-between items-center">
+                  <h3 className="text-xl font-semibold">{product.name}</h3>
+                  <div className="mt-2 flex gap-2">
+                    {product.colors.map((color, index) => (
+                      <span
+                        key={index}
+                        className={`w-3 h-3 ${color} rounded-full`}
+                      ></span>
+                    ))}
                   </div>
                 </div>
 
-                {/* Star Rating */}
-                <div className="flex items-center mt-1">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, index) => (
-                      <span
-                        key={index}
-                        className={`${
-                          index < product.rating
-                            ? "text-yellow-500"
-                            : "text-gray-300"
-                        } text-lg`}
-                      >
-                        ★
-                      </span>
-                    ))}
-                </div>
-
-                <p className="text-sm text-gray-600 mt-2">
-                  {product.description}
-                </p>
-
-                {/* Price and Old Price */}
-                <div className="mt-2">
-                  <span className="text-lg font-bold text-indigo-600">
-                    ${product.price}
-                  </span>
-                  <span className="ml-2 line-through text-gray-500">
-                    ${product.oldPrice}
+                <div className="mt-4 flex items-center space-x-2">
+                  <span className="text-lg font-bold">{product.price}</span>
+                  <span className="text-red-500 line-through">
+                    {product.oldPrice}
                   </span>
                 </div>
+                <p className="mt-2 text-gray-600 w-96">{product.description}</p>
 
-                {/* Action Buttons */}
-                <div className="mt-2 flex space-x-2">
-                  <button className="text-gray-500 hover:text-indigo-600">
-                    ❤
+                <div className="mt-2 flex items-center">
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <span
+                      key={index}
+                      className={`${
+                        index < product.rating
+                          ? "text-yellow-400"
+                          : "text-gray-300"
+                      } text-lg`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex space-x-4">
+                  <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
+                    <AiOutlineShoppingCart size={24} />
                   </button>
-                  <button className="text-gray-500 hover:text-indigo-600">
-                    🔍
-                  </button>
-                  <button className="text-gray-500 hover:text-indigo-600">
-                    🛒
+                  <Link href="/cart">
+                    <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
+                      <AiOutlineHeart size={24} />
+                    </button>
+                  </Link>
+                  <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
+                    <FaSearch size={24} />
                   </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
-      </main>
+      </div>
+      <div className="py-8 flex justify-center items-center mt-7 mb-12">
+        <div className="flex flex-wrap justify-center sm:justify-between items-center sm:gap-6 md:gap-8 w-full max-w-6xl px-4">
+          <Image
+            src="/text1.png"
+            alt="Partner 1"
+            width={100}
+            height={10}
+            className="sm:h-10 md:h-12"
+          />
+          <Image
+            src="/text2.png"
+            alt="Partner 2"
+            width={100}
+            height={10}
+            className="sm:h-10 md:h-12 grayscale hover:grayscale-0 transition duration-300"
+          />
+          <Image
+            src="/text3.png"
+            alt="Partner 3"
+            height={10}
+            width={100}
+            className="sm:h-10 md:h-12 grayscale hover:grayscale-0 transition duration-300"
+          />
+          <Image
+            src="/text4.png"
+            alt="Partner 4"
+            height={10}
+            width={100}
+            className="sm:h-10 md:h-12 grayscale hover:grayscale-0 transition duration-300"
+          />
+          <Image
+            src="/text5.png"
+            alt="Partner 5"
+            width={100}
+            height={10}
+            className="sm:h-10 md:h-12 grayscale hover:grayscale-0 transition duration-300"
+          />
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default ShopList;

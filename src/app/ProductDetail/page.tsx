@@ -48,7 +48,7 @@ export default function ProductDetails() {
         {/* Product Details */}
         <div>
           <h1 className="text-4xl font-semibold">Playwood Arm Chair</h1>
-          <div className="text-gray-500 mt-2 4xl">
+          <div className="text-gray-500 mt-2 4xln">
             
             <span className="line-through 4xl:">$200</span>{' '}
             <span className="text-red-500 4xl">$150</span>
