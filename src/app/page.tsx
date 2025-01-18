@@ -10,7 +10,8 @@ import TopCategories from "./compunents/TopCategory";
 import CustomDiv from "./compunents/Custom";
 import LatestBlog from "./compunents/LatestBlog";
 
-export default function Home() {
+export default async function Home() {
+  
   return (
   <>
   <HeroSection />
