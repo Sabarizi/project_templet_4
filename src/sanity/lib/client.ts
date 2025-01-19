@@ -1,9 +1,17 @@
-import { createClient } from 'next-sanity';
+// sanity/lib/client.ts
 
-const client = createClient({
-  projectId: 'your_project_id',
-  dataset: 'your_dataset_name',
-  apiVersion: '2021-06-07',
-  useCdn: false,
-  token: process.env.SANITY_TOKEN, // Make sure to load the token from environment variables
+import sanityClient from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
+
+export const client = sanityClient({
+    projectId: '24jz38gf',
+    dataset: 'production',
+    useCdn: true, // `false` if you want to ensure fresh data
+    apiVersion: '2023-08-15', // use a UTC date string
 });
+
+const builder = imageUrlBuilder(client);
+
+export function urlFor(source: any) {
+    return builder.image(source);
+}

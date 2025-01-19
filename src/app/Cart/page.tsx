@@ -1,56 +1,42 @@
-// ./src/app/CartPage/page.tsx
+"use client";
 
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function CartPage() {
-  // Array of products with individual images and details
-  const products = [
-    {
-      id: 1,
-      name: "Brown Leather Bag",
-      image: "/cart1.png", // Leading slash added
-      color: "Brown",
-      size: "XL",
-      price: 32.0,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: "Black Handbag",
-      image: "/cart2.png", // Leading slash added
-      color: "Black",
-      size: "M",
-      price: 45.0,
-      quantity: 2,
-    },
-    {
-      id: 3,
-      name: "Red Crossbody Bag",
-      image: "/cart3.png", // Leading slash added
-      color: "Red",
-      size: "L",
-      price: 25.0,
-      quantity: 1,
-    },
-    {
-      id: 4,
-      name: "Gray Tote Bag",
-      image: "/cart4.png", // Leading slash added
-      color: "Gray",
-      size: "XL",
-      price: 38.0,
-      quantity: 3,
-    },
-    {
-      id: 5,
-      name: "Pink Mini Bag",
-      image: "/cart5.png", // Leading slash added
-      color: "Pink",
-      size: "S",
-      price: 29.0,
-      quantity: 1,
-    },
-  ];
+  const [cartItems, setCartItems] = useState<any[]>([]);
+
+  // Load cart items from localStorage on mount
+  useEffect(() => {
+    const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCartItems(existingCart);
+  }, []);
+
+  // Handle changing a product's quantity
+  function handleQuantityChange(index: number, newQty: number) {
+    const updatedCart = [...cartItems];
+    updatedCart[index].quantity = newQty;
+    setCartItems(updatedCart);
+  }
+
+  // Update localStorage with the latest cart state
+  function handleUpdateCart() {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+    alert("Cart updated!");
+  }
+
+  // Clear entire cart
+  function handleClearCart() {
+    setCartItems([]);
+    localStorage.setItem("cart", "[]");
+    alert("Cart cleared!");
+  }
+
+  // Compute subtotal
+  const subTotal = cartItems.reduce(
+    (acc, item) => acc + (Number(item.price) || 0) * item.quantity, // Ensure price is a number
+    0
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 py-6">
@@ -68,7 +54,6 @@ export default function CartPage() {
       <div className="max-w-6xl mx-auto px-4 mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Product Table */}
         <div className="lg:col-span-2">
-          {/* Make the table horizontally scrollable on small screens */}
           <div className="overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-200 bg-white rounded-lg">
               <thead className="bg-gray-100">
@@ -88,51 +73,64 @@ export default function CartPage() {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) => (
-                  <tr key={product.id}>
-                    <td className="border border-gray-200 p-4 flex items-center space-x-4">
-                      <div className="flex-shrink-0">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          height={87}
-                          width={83}
-                          className="w-12 h-12 rounded object-cover"
+                {cartItems.map((item, index) => {
+                  // Ensure price is a number
+                  const price = Number(item.price) || 0;
+                  return (
+                    <tr key={item._id}>
+                      <td className="border border-gray-200 p-4 flex items-center space-x-4">
+                        {/* Product Image */}
+                        <div className="flex-shrink-0">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={80}
+                            height={80}
+                            className="w-12 h-12 rounded object-cover"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-medium text-gray-800 md:text-base">
+                            {item.name}
+                          </p>
+                        </div>
+                      </td>
+                      <td className="border border-gray-200 p-4 text-gray-800 text-sm md:text-base">
+                        ${price.toFixed(2)}
+                      </td>
+                      <td className="border border-gray-200 p-4 text-gray-800">
+                        <input
+                          type="number"
+                          className="w-16 border rounded-md p-1 text-sm focus:outline-none focus:ring-pink-500"
+                          min={1}
+                          value={item.quantity}
+                          onChange={(e) =>
+                            handleQuantityChange(index, Number(e.target.value))
+                          }
                         />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-800 md:text-base">
-                          {product.name}
-                        </p>
-                        <p className="text-xs text-gray-500 md:text-sm">Color: {product.color}</p>
-                        <p className="text-xs text-gray-500 md:text-sm">Size: {product.size}</p>
-                      </div>
-                    </td>
-                    <td className="border border-gray-200 p-4 text-gray-800 text-sm md:text-base">
-                      ${product.price.toFixed(2)}
-                    </td>
-                    <td className="border border-gray-200 p-4 text-gray-800">
-                      <input
-                        type="number"
-                        className="w-16 border rounded-md p-1 text-sm focus:outline-none focus:ring-pink-500"
-                        defaultValue={product.quantity}
-                        min="1"
-                      />
-                    </td>
-                    <td className="border border-gray-200 p-4 text-gray-800 text-sm md:text-base">
-                      ${(product.price * product.quantity).toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                      <td className="border border-gray-200 p-4 text-gray-800 text-sm md:text-base">
+                        ${(price * item.quantity).toFixed(2)}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
+
           {/* Action Buttons */}
           <div className="mt-4 flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
-            <button className="px-4 py-2 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600 transition duration-200">
+            <button
+              className="px-4 py-2 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600 transition duration-200"
+              onClick={handleUpdateCart}
+            >
               Update Cart
             </button>
-            <button className="px-4 py-2 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600 transition duration-200">
+            <button
+              className="px-4 py-2 bg-pink-500 text-white font-medium rounded-md hover:bg-pink-600 transition duration-200"
+              onClick={handleClearCart}
+            >
               Clear Cart
             </button>
           </div>
@@ -146,11 +144,11 @@ export default function CartPage() {
             <div className="mt-4">
               <p className="flex justify-between text-gray-600">
                 <span>Subtotals:</span>
-                <span>£219.00</span>
+                <span>£{subTotal.toFixed(2)}</span>
               </p>
               <p className="flex justify-between text-gray-800 font-bold mt-2">
                 <span>Totals:</span>
-                <span>£325.00</span>
+                <span>£{subTotal.toFixed(2)}</span>
               </p>
               <p className="text-sm text-gray-500 mt-2">
                 Shipping &amp; taxes calculated at checkout

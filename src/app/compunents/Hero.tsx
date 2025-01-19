@@ -2,6 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Head from "next/head";
 
+import client from '@sanity/client'; // Import the sanity client
+
+const fetchData = async () => {
+  const query = `*[_type == "productSchema"]`;  // Your Sanity query
+  const products = await (query);
+  console.log(products);  // Display the fetched products
+};
+
+fetchData();
+
 const HeroSection = () => {
   return (
     <>

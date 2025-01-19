@@ -84,6 +84,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              <a href="/Sanity-products" className="text-gray-900 hover:text-purple-600">Sanity Products</a>
               <a href="/ProductDetail" className="text-gray-900 hover:text-purple-600">Products</a>
               <a href="/Blog" className="text-gray-900 hover:text-purple-600">Blog</a>
               <a href="/Contact" className="text-gray-900 hover:text-purple-600">Contact</a>
