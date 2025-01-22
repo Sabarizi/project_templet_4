@@ -84,8 +84,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <a href="/Sanity-products" className="text-gray-900 hover:text-purple-600">Sanity Products</a>
-              <a href="/ProductDetail" className="text-gray-900 hover:text-purple-600">Products</a>
+              <a href="/products" className="text-gray-900 hover:text-purple-600">Products</a>
               <a href="/Blog" className="text-gray-900 hover:text-purple-600">Blog</a>
               <a href="/Contact" className="text-gray-900 hover:text-purple-600">Contact</a>
               <a href="/Shop" className="text-gray-900 hover:text-purple-600">Shop</a>
@@ -140,7 +139,7 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <a href="/ProductDetail" className="block text-gray-900 hover:bg-gray-200 py-2">Products</a>
+            <a href="/Sanity-products" className="block text-gray-900 hover:bg-gray-200 py-2">Products</a>
             <a href="/Blog" className="block text-gray-900 hover:bg-gray-200 py-2">Blog</a>
             <a href="/Contact" className="block text-gray-900 hover:bg-gray-200 py-2">Contact</a>
             <a href="/Shop" className="block text-gray-900 hover:bg-gray-200 py-2">Shop</a>

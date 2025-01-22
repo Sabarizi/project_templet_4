@@ -1,6 +1,3 @@
-
-
-
 import { client } from './client';
 
 // Function to fetch all products
@@ -10,21 +7,24 @@ export async function getProducts() {
         name,
         "image": image.asset->url, 
         price,
-        description
+        description,
+        inStock,
+        category,
     }`;
 
-    const products = await client.fetch(query); 
+    const products = await client.fetch(query);
     return products;
 }
 
 // Function to fetch a single product by ID
-export async function getProductById(id) {
+export async function getProductById(id:any) {
     const query = `*[_type == "product" && _id == $id][0]{
         _id,
         name,
         "image": image.asset->url,
         price,
         description,
+        category,
         inStock,
         reviews
     }`;

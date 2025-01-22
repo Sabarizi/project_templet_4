@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -152,10 +153,11 @@ export default function CartPage() {
               </p>
               <p className="text-sm text-gray-500 mt-2">
                 Shipping &amp; taxes calculated at checkout
-              </p>
+              </p><Link href={"/HacktoDemo"}>
               <button className="mt-4 w-full bg-green-500 text-white font-medium py-2 rounded-md hover:bg-green-600 transition duration-200">
                 Proceed To Checkout
               </button>
+              </Link>
             </div>
           </div>
 

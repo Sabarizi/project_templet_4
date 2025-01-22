@@ -1,14 +1,15 @@
-// sanity/lib/client.ts
-
-import sanityClient from '@sanity/client';
+import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url';
 
-export const client = sanityClient({
-    projectId: '24jz38gf',
-    dataset: 'production',
-    useCdn: true, // `false` if you want to ensure fresh data
-    apiVersion: '2023-08-15', // use a UTC date string
-});
+import { apiVersion, dataset, projectId } from '../env'
+
+export const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false, // Set to false if statically generating pages, using ISR or tag-based revalidation
+})
+
 
 const builder = imageUrlBuilder(client);
 

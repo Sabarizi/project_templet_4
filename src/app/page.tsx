@@ -9,11 +9,14 @@ import DiscountItem from "./compunents/Discount";
 import TopCategories from "./compunents/TopCategory";
 import CustomDiv from "./compunents/Custom";
 import LatestBlog from "./compunents/LatestBlog";
+import PartnersSection from "./compunents/PartnerSection";
+
 
 export default async function Home() {
   
   return (
   <>
+  
   <HeroSection />
  <FeaturedProducts />
  <LatestProducts />
@@ -23,7 +26,9 @@ export default async function Home() {
  <DiscountItem />
  <TopCategories />
  <CustomDiv />
+ <PartnersSection/>
 <LatestBlog />
+
 
     </>
   

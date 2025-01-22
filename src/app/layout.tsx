@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import Navbar from "./compunents/Navbar"; // Adjust path based on folder structure
 import Footer from "./compunents/Footer"; // Adjust path based on folder structure
 import "./globals.css";
-
+import { WishlistProvider } from "@/context/WishlistContext";
+import { CartProvider } from "@/contexts/CartContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -19,9 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <WishlistProvider>
+      <CartProvider>
         <Navbar /> {/* Navbar will render at the top */}
-        <main>{children}</main> {/* Content from individual pages */}
+        <main>
+          {children}</main> {/* Content from individual pages */}
        <Footer /> {/* Footer will render at the bottom */}
+       </CartProvider >
+       </WishlistProvider>
       </body>
     </html>
   );
