@@ -1,6 +1,8 @@
-"use client"
+"use client";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+import { FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
+import Link from "next/link";
 
 const BlogPost = () => {
   // Dynamic blogs data
@@ -46,6 +48,9 @@ const BlogPost = () => {
     );
   }
 
+  // Filter out the current blog to create "related" set
+  const relatedBlogs = blogs.filter((item) => item.id !== blog.id);
+
   return (
     <>
       {/* Header Section */}
@@ -56,6 +61,7 @@ const BlogPost = () => {
         </p>
       </header>
 
+      {/* Main Container */}
       <div className="container mx-auto my-8 px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Blog Content */}
         <div className="lg:col-span-2">
@@ -69,10 +75,10 @@ const BlogPost = () => {
               className="object-cover rounded-md w-full"
             />
             <h1 className="text-4xl font-bold mt-4">{blog.title}</h1>
-            <p className="text-gray-500 mt-2">{`${blog.date}`}</p>
+            <p className="text-gray-500 mt-2">{blog.date}</p>
           </div>
 
-          {/* Blog Content */}
+          {/* Blog Details */}
           <div className="prose max-w-none">
             <p>{blog.content}</p>
             <p>
@@ -82,38 +88,37 @@ const BlogPost = () => {
             </p>
           </div>
 
-        
           {/* Related Blogs Section */}
-<div className="mt-12">
-  <h2 className="text-2xl font-semibold mb-4">Related Blogs</h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {blogs
-      .filter((relatedBlog) => relatedBlog.id !== id)
-      .map((relatedBlog, index) => (
-        <div
-          key={relatedBlog.id}
-          className="p-4 border rounded-md shadow-sm"
-        >
-          <Image
-            src={
-              index === 0
-                ? "/Group 92.png" // First custom image path
-                : "/Rectangle 70.png" // Second custom image path
-            }
-            alt={relatedBlog.title}
-            height={200}
-            width={300}
-            className="rounded-md"
-          />
-          <h3 className="font-bold mt-2">{relatedBlog.title}</h3>
-          <p className="text-sm text-gray-500">
-            {relatedBlog.content.substring(0, 50)}...
-          </p>
-        </div>
-      ))}
-  </div>
-</div>
-
+          <div className="mt-12">
+            <h2 className="text-2xl font-semibold mb-4">Related Blogs</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedBlogs.map((relatedBlog, index) => (
+                <div
+                  key={relatedBlog.id}
+                  className="p-4 border rounded-md shadow-sm"
+                >
+                  <Image
+                    // Example custom images for the 2 related items:
+                    src={index === 0 ? "/Group 92.png" : "/Rectangle 70.png"}
+                    alt={relatedBlog.title}
+                    height={200}
+                    width={300}
+                    className="rounded-md"
+                  />
+                  <h3 className="font-bold mt-2">{relatedBlog.title}</h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {relatedBlog.content.substring(0, 50)}...
+                  </p>
+                  <Link
+                    href={`/Blog/${relatedBlog.id}`}
+                    className="text-purple-600 inline-block mt-2"
+                  >
+                    Read More
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Additional Paragraph with Four Images */}
           <div className="mt-12">
@@ -167,10 +172,13 @@ const BlogPost = () => {
                 />
                 <textarea
                   placeholder="Your Comment"
-                  className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:ring-purple-500"
                   rows={5}
+                  className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:ring-purple-500"
                 />
-                <button className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700">
+                <button
+                  type="submit"
+                  className="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700"
+                >
                   Submit Comment
                 </button>
               </form>
@@ -178,7 +186,7 @@ const BlogPost = () => {
           </div>
         </div>
 
-        {/* Sidebar */}
+        {/* Sidebar - (Reusing similar sidebar as Blog listing) */}
         <aside className="space-y-6">
           {/* Search */}
           <div>
@@ -191,27 +199,135 @@ const BlogPost = () => {
 
           {/* Categories */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-700">Categories</h3>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li className="hover:text-purple-600 cursor-pointer">Hobbies (14)</li>
-              <li className="hover:text-purple-600 cursor-pointer">Women (21)</li>
-              <li className="hover:text-purple-600 cursor-pointer">Travel (10)</li>
+            <h3 className="text-lg font-semibold text-indigo-900 mb-4">
+              Categories
+            </h3>
+            <ul className="grid grid-cols-2 gap-y-1 text-sm text-indigo-900">
+              <li className="bg-pink-500 text-white rounded-md cursor-pointer text-center py-1">
+                Hobbies (14)
+              </li>
+              <li className="cursor-pointer text-center py-1">Women (21)</li>
+              <li className="cursor-pointer text-center py-1">Men (18)</li>
+              <li className="cursor-pointer text-center py-1">Clothing (11)</li>
+              <li className="cursor-pointer text-center py-1">Shoes (7)</li>
+              <li className="cursor-pointer text-center py-1">Travel (10)</li>
             </ul>
           </div>
 
-          {/* Recent Posts */}
+          {/* Recent Post */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-700">Recent Posts</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-2 text-sm text-gray-600">
-                <Image src="/recent1.jpg" alt="Recent Post 1" height={50} width={50} className="rounded" />
-                <p>Recent Blog Post 1</p>
+            <h3 className="text-2xl font-bold text-indigo-900 mb-4">
+              Recent Post
+            </h3>
+            <ul className="space-y-6">
+              <li className="flex items-center gap-4">
+                <Image
+                  src="/blog4.png"
+                  alt="Post 1"
+                  width={80}
+                  height={64}
+                  className="rounded-md object-cover"
+                />
+                <div>
+                  <h4 className="text-lg font-medium text-indigo-900">
+                    It is a long established fact
+                  </h4>
+                  <p className="text-sm text-gray-500 mt-1">Aug 09 2020</p>
+                </div>
               </li>
-              <li className="flex items-center space-x-2 text-sm text-gray-600">
-                <Image src="/recent2.jpg" alt="Recent Post 2" height={50} width={50} className="rounded" />
-                <p>Recent Blog Post 2</p>
+              <li className="flex items-center gap-4">
+                <Image
+                  src="/blog5.png"
+                  alt="Post 2"
+                  width={80}
+                  height={64}
+                  className="rounded-md object-cover"
+                />
+                <div>
+                  <h4 className="text-lg font-medium text-indigo-900">
+                    It is a long established fact
+                  </h4>
+                  <p className="text-sm text-gray-500 mt-1">Aug 09 2020</p>
+                </div>
+              </li>
+              <li className="flex items-center gap-4">
+                <Image
+                  src="/blog6.png"
+                  alt="Post 3"
+                  width={80}
+                  height={64}
+                  className="rounded-md object-cover"
+                />
+                <div>
+                  <h4 className="text-lg font-medium text-indigo-900">
+                    It is a long established fact
+                  </h4>
+                  <p className="text-sm text-gray-500 mt-1">Aug 09 2020</p>
+                </div>
+              </li>
+              <li className="flex items-center gap-4">
+                <Image
+                  src="/blog7.png"
+                  alt="Post 4"
+                  width={80}
+                  height={64}
+                  className="rounded-md object-cover"
+                />
+                <div>
+                  <h4 className="text-lg font-medium text-indigo-900">
+                    It is a long established fact
+                  </h4>
+                  <p className="text-sm text-gray-500 mt-1">Aug 09 2020</p>
+                </div>
               </li>
             </ul>
+          </div>
+
+          {/* Follow */}
+          <div>
+            <h3 className="text-2xl font-bold text-indigo-900 mb-4">Follow</h3>
+            <div className="flex items-center space-x-4 bg-white shadow-md rounded-md p-4 w-fit">
+              <a
+                href="#"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-purple-600 text-white"
+              >
+                <FaFacebook />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-pink-500 text-white"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-sky-400 text-white"
+              >
+                <FaTwitter />
+              </a>
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div>
+            <h3 className="text-2xl font-bold text-indigo-900 mb-4">Tags</h3>
+            <div className="flex flex-wrap gap-x-6 gap-y-3 text-lg">
+              <a href="#" className="text-indigo-900 hover:underline">
+                General
+              </a>
+              <a href="#" className="text-pink-500 hover:underline">
+                Atsanil
+              </a>
+              <a href="#" className="text-indigo-900 hover:underline">
+                Insas
+              </a>
+              <a href="#" className="text-indigo-900 hover:underline">
+                Bibsaas
+              </a>
+              <a href="#" className="text-indigo-900 hover:underline">
+                Nulla
+              </a>
+            </div>
           </div>
         </aside>
       </div>
