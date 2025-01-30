@@ -1,14 +1,13 @@
-"use client";
+"use client"; // Ensure this is present
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type WishlistItem = {
   id: string;
   name: string;
-  image:string;
-  description:string;
-  price:number;
-  // other properties...
+  image: string;
+  description: string;
+  price: number;
 };
 
 type WishlistContextType = {
@@ -18,17 +17,26 @@ type WishlistContextType = {
   removeFromWishlist: (id: string) => void;
 };
 
-const WishlistContext = createContext<WishlistContextType | undefined>(
-  undefined
-);
+const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
 
 export const WishlistProvider = ({ children }: { children: ReactNode }) => {
   const [wishlist, setWishlist] = useState<WishlistItem[]>([]);
 
+  // Load wishlist from localStorage
+  useEffect(() => {
+    const savedWishlist = localStorage.getItem("wishlist");
+    if (savedWishlist) {
+      setWishlist(JSON.parse(savedWishlist));
+    }
+  }, []);
+
+  // Save wishlist to localStorage
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
+
   const addToWishlist = (item: WishlistItem) => {
-    // Only add if not already in the list
-    const exists = wishlist.find((i) => i.id === item.id);
-    if (!exists) {
+    if (!wishlist.some((i) => i.id === item.id)) {
       setWishlist([...wishlist, item]);
     }
   };
@@ -37,17 +45,8 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
     setWishlist(wishlist.filter((item) => item.id !== id));
   };
 
-  const wishlistCount = wishlist.length; // derived
-
   return (
-    <WishlistContext.Provider
-      value={{
-        wishlist,
-        wishlistCount,
-        addToWishlist,
-        removeFromWishlist,
-      }}
-    >
+    <WishlistContext.Provider value={{ wishlist, wishlistCount: wishlist.length, addToWishlist, removeFromWishlist }}>
       {children}
     </WishlistContext.Provider>
   );

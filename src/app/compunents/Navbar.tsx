@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneVolume, FaChevronDown, FaRegHeart } from "react-icons/fa6";
@@ -8,8 +8,26 @@ import { LuShoppingCart } from "react-icons/lu";
 import { GoPerson } from "react-icons/go";
 import { FaSearch } from "react-icons/fa";
 
+// Import your CartContext hook
+import { useCart } from "../../contexts/CartContext";
+
 export default function Navbar() {
   const router = useRouter();
+
+  // Access cart from global context
+  const { cart } = useCart();
+  // Compute cart count by summing item quantities
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  // (Optional) Hard-coded wishlist example
+  const [wishlistCount] = useState<number>(2);
+
+  // Track hydration to avoid SSR/CSR mismatch
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => {
+    // This will run once on the client, ensuring "hydrated" is true in the browser
+    setHydrated(true);
+  }, []);
 
   // Mobile menu states
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,34 +37,18 @@ export default function Navbar() {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
 
-  // Example counts (wishlist, cart)
-  // In a real app, you'd get these from Redux, Context, or server.
-  const [wishlistCount] = useState<number>(2);
-  const [cartCount] = useState<number>(3);
-  
-
   // For search bar
   const [searchValue, setSearchValue] = useState("");
 
   // Toggles
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-  const toggleHomeDropdown = () => {
-    setIsHomeDropdownOpen(!isHomeDropdownOpen);
-  };
-  const toggleLangDropdown = () => {
-    setIsLangOpen(!isLangOpen);
-  };
-  const toggleCurrencyDropdown = () => {
-    setIsCurrencyOpen(!isCurrencyOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleHomeDropdown = () => setIsHomeDropdownOpen(!isHomeDropdownOpen);
+  const toggleLangDropdown = () => setIsLangOpen(!isLangOpen);
+  const toggleCurrencyDropdown = () => setIsCurrencyOpen(!isCurrencyOpen);
 
   // Handle search
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Navigate to /products?search=query or just /products
-    // Adjust as needed.
     router.push(`/products?search=${encodeURIComponent(searchValue)}`);
   };
 
@@ -73,10 +75,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-4 relative">
               {/* Language Dropdown */}
               <div className="relative">
-                <button
-                  className="flex items-center"
-                  onClick={toggleLangDropdown}
-                >
+                <button className="flex items-center" onClick={toggleLangDropdown}>
                   English
                   <FaChevronDown className="ml-1 text-xs" />
                 </button>
@@ -115,10 +114,7 @@ export default function Navbar() {
 
               {/* Currency Dropdown */}
               <div className="relative">
-                <button
-                  className="flex items-center"
-                  onClick={toggleCurrencyDropdown}
-                >
+                <button className="flex items-center" onClick={toggleCurrencyDropdown}>
                   USD
                   <FaChevronDown className="ml-1 text-xs" />
                 </button>
@@ -173,11 +169,12 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Cart with badge */}
+              {/* Cart with badge (only show after hydration) */}
               <div className="relative flex items-center space-x-1">
                 <a href="/Cart">Cart</a>
                 <LuShoppingCart />
-                {cartCount > 0 && (
+                {/* If not hydrated on the client, do NOT render the <span> to prevent SSR mismatch */}
+                {hydrated && cartCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                     {cartCount}
                   </span>
@@ -230,19 +227,13 @@ export default function Navbar() {
                 )}
               </div>
 
-              <a
-                href="/products"
-                className="text-gray-900 hover:text-purple-600"
-              >
+              <a href="/products" className="text-gray-900 hover:text-purple-600">
                 Products
               </a>
               <a href="/Blog" className="text-gray-900 hover:text-purple-600">
                 Blog
               </a>
-              <a
-                href="/Contact"
-                className="text-gray-900 hover:text-purple-600"
-              >
+              <a href="/Contact" className="text-gray-900 hover:text-purple-600">
                 Contact
               </a>
               <a href="/Shop" className="text-gray-900 hover:text-purple-600">
@@ -273,7 +264,6 @@ export default function Navbar() {
               onClick={toggleMenu}
               aria-label="Toggle mobile menu"
             >
-              {/* Icon (Hamburger) */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -329,28 +319,16 @@ export default function Navbar() {
                 )}
               </div>
 
-              <a
-                href="/products"
-                className="block text-gray-900 hover:bg-gray-200 py-2"
-              >
+              <a href="/products" className="block text-gray-900 hover:bg-gray-200 py-2">
                 Products
               </a>
-              <a
-                href="/Blog"
-                className="block text-gray-900 hover:bg-gray-200 py-2"
-              >
+              <a href="/Blog" className="block text-gray-900 hover:bg-gray-200 py-2">
                 Blog
               </a>
-              <a
-                href="/Contact"
-                className="block text-gray-900 hover:bg-gray-200 py-2"
-              >
+              <a href="/Contact" className="block text-gray-900 hover:bg-gray-200 py-2">
                 Contact
               </a>
-              <a
-                href="/Shop"
-                className="block text-gray-900 hover:bg-gray-200 py-2"
-              >
+              <a href="/Shop" className="block text-gray-900 hover:bg-gray-200 py-2">
                 Shop
               </a>
 
@@ -363,10 +341,7 @@ export default function Navbar() {
                   className="flex-1 border border-gray-300 rounded-l-md p-2 text-sm focus:outline-none focus:ring-1 focus:ring-pink-500"
                   placeholder="Search..."
                 />
-                <button
-                  type="submit"
-                  className="bg-pink-500 text-white p-2 rounded-r-md"
-                >
+                <button type="submit" className="bg-pink-500 text-white p-2 rounded-r-md">
                   <FaSearch />
                 </button>
               </form>

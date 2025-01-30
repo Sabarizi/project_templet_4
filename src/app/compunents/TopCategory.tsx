@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 export default function TopCategories() {
   return (
     <div className="text-center py-10">
@@ -10,10 +11,20 @@ export default function TopCategories() {
 
       {/* Categories Container */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+        
         {/* Category Item 1 - Active State */}
-        <div className="w-56 flex flex-col items-center">
+        <div className="group w-56 flex flex-col items-center">
           <div className="relative">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center relative border-4 border-purple-500">
+            <div
+              className="
+                w-32 h-32 md:w-40 md:h-40 
+                rounded-full bg-purple-100 
+                flex items-center justify-center 
+                relative border-4 border-purple-500 
+                transition-transform duration-300 
+                group-hover:scale-110 group-hover:shadow-xl
+              "
+            >
               <Image
                 src="/top.png" // Replace with actual image path
                 className="w-20 h-20 md:w-28 md:h-28 object-contain"
@@ -22,10 +33,19 @@ export default function TopCategories() {
                 width={269}
               />
             </div>
-            <Link href={"/products"}>
-            <button className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm">
-              View Shop
-            </button>
+            <Link href={"/Shop"} passHref>
+              <button
+                className="
+                  absolute -bottom-4 left-1/2 
+                  transform -translate-x-1/2 
+                  bg-green-500 text-white px-4 py-1 
+                  rounded-full text-sm 
+                  transition-opacity duration-300 
+                  opacity-0 group-hover:opacity-100
+                "
+              >
+                View Shop
+              </button>
             </Link>
           </div>
           <h3 className="text-base md:text-lg font-semibold mt-6">
@@ -35,8 +55,16 @@ export default function TopCategories() {
         </div>
 
         {/* Category Item 2 */}
-        <div className="w-56 flex flex-col items-center">
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center">
+        <div className="group w-56 flex flex-col items-center">
+          <div
+            className="
+              w-32 h-32 md:w-40 md:h-40 
+              rounded-full bg-purple-100 
+              flex items-center justify-center 
+              transition-transform duration-300 
+              group-hover:scale-110 group-hover:shadow-xl
+            "
+          >
             <Image
               src="/image 1168.png" // Replace with actual image path
               alt="Mini LCW Chair"
@@ -52,8 +80,16 @@ export default function TopCategories() {
         </div>
 
         {/* Category Item 3 */}
-        <div className="w-56 flex flex-col items-center">
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center">
+        <div className="group w-56 flex flex-col items-center">
+          <div
+            className="
+              w-32 h-32 md:w-40 md:h-40 
+              rounded-full bg-purple-100 
+              flex items-center justify-center 
+              transition-transform duration-300 
+              group-hover:scale-110 group-hover:shadow-xl
+            "
+          >
             <Image
               src="/box for image.png" // Replace with actual image path
               alt="Mini LCW Chair"
@@ -69,13 +105,21 @@ export default function TopCategories() {
         </div>
 
         {/* Category Item 4 */}
-        <div className="w-56 flex flex-col items-center">
-          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-purple-100 flex items-center justify-center">
+        <div className="group w-56 flex flex-col items-center">
+          <div
+            className="
+              w-32 h-32 md:w-40 md:h-40 
+              rounded-full bg-purple-100 
+              flex items-center justify-center 
+              transition-transform duration-300 
+              group-hover:scale-110 group-hover:shadow-xl
+            "
+          >
             <Image
               src="/top.png" // Replace with actual image path
               alt="Mini LCW Chair"
               height={345}
-                width={269}
+              width={269}
               className="w-20 h-20 md:w-28 md:h-28 object-contain"
             />
           </div>

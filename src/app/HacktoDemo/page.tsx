@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useCart } from "../../contexts/CartContext";
@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const { cart, removeFromCart, updateQuantity } = useCart(); // <-- NO clearCart here
   const router = useRouter();
 
   // Form state initialization
@@ -34,30 +34,48 @@ const CheckoutPage = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormDetails((prevDetails:any) => {
+    setFormDetails((prevDetails: any) => {
       const updatedDetails = { ...prevDetails, [name]: value };
       if (typeof window !== "undefined") {
         localStorage.setItem("formDetails", JSON.stringify(updatedDetails));
-      }      
+      }
       return updatedDetails;
     });
   };
 
   useEffect(() => {
-    const { email, firstName, lastName, address, apartment, city, country, postalCode } = formDetails;
+    const {
+      email,
+      firstName,
+      lastName,
+      address,
+      apartment,
+      city,
+      country,
+      postalCode,
+    } = formDetails;
     setIsFormValid(
-      !!(email && firstName && lastName && address && apartment && city && country && postalCode)
+      !!(
+        email &&
+        firstName &&
+        lastName &&
+        address &&
+        apartment &&
+        city &&
+        country &&
+        postalCode
+      )
     );
   }, [formDetails]);
 
   const isProceedEnabled = isFormValid && cart.length > 0;
 
+  // Removed clearCart() from here
   const handleProceedToCheckout = () => {
     if (typeof window !== "undefined") {
       localStorage.setItem("formDetails", JSON.stringify(formDetails));
       localStorage.setItem("cartDetails", JSON.stringify(cart));
     }
-    clearCart();
     router.push("/payment");
   };
 
@@ -205,7 +223,7 @@ const CheckoutPage = () => {
             </div>
           </div>
         </div>
-            
+
         <div className="lg:mt-28 bg-white p-6 rounded-lg shadow-md">
           <ul className="divide-y divide-gray-200">
             {cart.map((item) => (
@@ -225,7 +243,9 @@ const CheckoutPage = () => {
                     type="number"
                     min="1"
                     value={item.quantity}
-                    onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                    onChange={(e) =>
+                      updateQuantity(item.id, parseInt(e.target.value))
+                    }
                     className="w-16 border rounded"
                   />
                 </div>
@@ -239,33 +259,32 @@ const CheckoutPage = () => {
             ))}
           </ul>
           <div className="mt-4">
-            <p className="text-blue-900 font-semibold">Total: ${calculateTotal()}</p>
+            <p className="text-blue-900 font-semibold">
+              Total: ${calculateTotal()}
+            </p>
           </div>
-            <div className="flex items-center mt-2">
-                <input
-                  type="checkbox"
-                  id="subscribe"
-                  className="h-4 w-4 text-green-500"
-                />
-                <label
-                  htmlFor="subscribe"
-                  className="ml-2 text-sm text-gray-600"
-                >
-                  Shipping & taxes calculated at checkout
-                </label>
-              </div>
-              <br />
-              <button
-                disabled={!isFormValid}
-                onClick={isFormValid ? handleProceedToCheckout : undefined}
-                className={`w-full mt-4 py-2 rounded-md ${
-                  isFormValid
-                    ? "bg-green-500 text-white hover:bg-green-600"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                }`}
-              >
-                Proceed to Payment
-              </button>
+          <div className="flex items-center mt-2">
+            <input
+              type="checkbox"
+              id="subscribe"
+              className="h-4 w-4 text-green-500"
+            />
+            <label htmlFor="subscribe" className="ml-2 text-sm text-gray-600">
+              Shipping & taxes calculated at checkout
+            </label>
+          </div>
+          <br />
+          <button
+            disabled={!isProceedEnabled}
+            onClick={isProceedEnabled ? handleProceedToCheckout : undefined}
+            className={`w-full mt-4 py-2 rounded-md ${
+              isProceedEnabled
+                ? "bg-green-500 text-white hover:bg-green-600"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
+          >
+            Proceed to Payment
+          </button>
         </div>
       </div>
     </div>

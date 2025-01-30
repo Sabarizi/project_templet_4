@@ -85,13 +85,25 @@ const LatestProducts: React.FC = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-          {products.map((product, index) => (
+          {products.map((product) => (
             <div
               key={product._id}
-              className={`relative bg-white rounded-lg p-4 text-center group`}
+              className={`
+                relative bg-white rounded-lg p-4 text-center group 
+                transition-transform duration-300 
+                hover:shadow-lg hover:scale-105
+              `}
             >
               {/* Product Image */}
-              <div className="w-full h-60 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
+              <div
+                className={`
+                  w-full h-60 sm:h-64 md:h-72 lg:h-80 
+                  overflow-hidden rounded-lg bg-gray-100 
+                  flex items-center justify-center
+                  transition-transform duration-300 
+                  group-hover:scale-110
+                `}
+              >
                 <Image
                   src={product.image}
                   alt={product.name}
