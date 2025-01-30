@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 export default function TopCategories() {
   return (
     <div className="text-center py-10">
@@ -21,9 +22,11 @@ export default function TopCategories() {
                 width={269}
               />
             </div>
+            <Link href={"/products"}>
             <button className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-1 rounded-full text-sm">
               View Shop
             </button>
+            </Link>
           </div>
           <h3 className="text-base md:text-lg font-semibold mt-6">
             Mini LCW Chair

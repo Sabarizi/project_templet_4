@@ -1,3 +1,5 @@
+"use client";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
@@ -8,7 +10,7 @@ export default function Home() {
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: 26.0,
       oldPrice: 52.0,
-      image: "/shop1.png", // Leading slash added
+      image: "/shop1.png",
       rating: 4,
     },
     {
@@ -176,6 +178,14 @@ export default function Home() {
 
                 {/* Action Buttons */}
                 <div className="mt-2 flex space-x-2">
+                  {/* Example Link to Product Detail */}
+                  <Link
+                    href={`/ShopLeft/${product.id}`}
+                    className="px-4 py-2 border rounded text-blue-600 hover:bg-blue-50"
+                  >
+                    View Details
+                  </Link>
+
                   <button className="text-gray-500 hover:text-indigo-600">
                     ❤
                   </button>

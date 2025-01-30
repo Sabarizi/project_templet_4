@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 
@@ -5,37 +6,63 @@ interface BlogPost {
   author: string;
   date: string;
   title: string;
-  description: string;
+  shortDescription: string;
+  fullDescription: string;
   imageUrl: string;
 }
 
 const LatestBlog = () => {
+  // Updated blog data with both short and full descriptions
   const blogs: BlogPost[] = [
     {
       author: "SaberAli",
       date: "21 August 2020",
       title: "Top Essential Trends in 2021",
-      description:
-        "More off this less hello samlande lied much over tightly circa horse taped mightly.",
+      shortDescription:
+        "More off this less hello samlande lied much over tightly circa horse taped mightly...",
+      fullDescription:
+        "More off this less hello samlande lied much over tightly circa horse taped mightly. \
+        Here is the full version of the description with all the details you want to show your readers. \
+        You can add more paragraphs, images, or any content to illustrate the blog fully.",
       imageUrl: "/Frame 3.png",
     },
     {
       author: "Surfauxion",
       date: "21 August 2020",
       title: "Top Essential Trends in 2021",
-      description:
-        "More off this less hello samlande lied much over tightly circa horse taped mightly.",
+      shortDescription:
+        "More off this less hello samlande lied much over tightly circa horse taped mightly...",
+      fullDescription:
+        "More off this less hello samlande lied much over tightly circa horse taped mightly. \
+        This is an example of what the longer content can look like. You can customize this text as needed \
+        to represent the full blog post or article details.",
       imageUrl: "/Frame 4.png",
     },
     {
       author: "SaberAli",
       date: "21 August 2020",
       title: "Top Essential Trends in 2021",
-      description:
-        "More off this less hello samlande lied much over tightly circa horse taped mightly.",
+      shortDescription:
+        "More off this less hello samlande lied much over tightly circa horse taped mightly...",
+      fullDescription:
+        "More off this less hello samlande lied much over tightly circa horse taped mightly. \
+        Add any additional content you would like the user to read once they click on 'Read More'.",
       imageUrl: "/Frame 5.png",
     },
   ];
+
+  // Track which blog index is expanded (null = none expanded)
+  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(null);
+
+  // Toggle the expanded state of a specific blog post
+  const handleReadMoreClick = (index: number) => {
+    // If the same blog is clicked again, collapse it by setting null
+    if (expandedIndex === index) {
+      setExpandedIndex(null);
+    } else {
+      setExpandedIndex(index);
+    }
+  };
 
   return (
     <section className="py-10 px-4 sm:px-6 lg:px-8 bg-purple-50">
@@ -76,16 +103,22 @@ const LatestBlog = () => {
                 <h3 className="text-lg font-semibold text-blue-900 mb-2">
                   {blog.title}
                 </h3>
-                {/* Blog Description */}
+                {/* Blog Description (short or full based on expanded state) */}
                 <p className="text-sm text-gray-700 mb-4 flex-1">
-                  {blog.description}
+                  {expandedIndex === index
+                    ? blog.fullDescription
+                    : blog.shortDescription}
                 </p>
-                {/* Read More Link */}
+                {/* Read More / Read Less Link */}
                 <a
                   href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleReadMoreClick(index);
+                  }}
                   className="text-sm text-blue-500 font-medium hover:underline self-start"
                 >
-                  Read More
+                  {expandedIndex === index ? "Read Less" : "Read More"}
                 </a>
               </div>
             </div>

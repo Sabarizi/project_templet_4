@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { ShoppingCartIcon, HeartIcon, SearchIcon } from "@heroicons/react/outline";
+import Link from "next/link";
 
 const FeaturedProducts = () => {
   const products = [
@@ -77,10 +78,11 @@ const FeaturedProducts = () => {
                 <a href="/Cart"><ShoppingCartIcon className="h-6 w-6 text-white cursor-pointer hover:text-green-500" /></a>
                 <HeartIcon className="h-6 w-6 text-white cursor-pointer hover:text-red-500" />
                 <SearchIcon className="h-6 w-6 text-white cursor-pointer hover:text-blue-500" />
-              </div>
+              </div><Link href={"/products"}>
               <button className="px-4 py-2 bg-white text-black rounded-md hover:bg-gray-200">
                 View Details
               </button>
+              </Link>
             </div>
           </div>
         ))}

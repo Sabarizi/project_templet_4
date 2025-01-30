@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const DiscountItem = () => {
   return (
@@ -54,9 +55,11 @@ const DiscountItem = () => {
           </ul>
 
           {/* Button */}
+          <Link href={'/products'}>
           <button className="bg-pink-500 text-white py-3 px-6 rounded-md shadow-md text-sm hover:bg-pink-600 transition mt-4">
             Shop Now
           </button>
+          </Link>
         </div>
 
         {/* Image Section */}

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Head from "next/head";
+import Head from "next/head"
+import Link from "next/link";
 
 import client from '@sanity/client'; // Import the sanity client
 
@@ -51,10 +52,11 @@ const HeroSection = () => {
               <p className="text-gray-600 lg:text-lg">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est 
                 <br /> adipiscing in phasellus non in justo.
-              </p>
+              </p><Link href={"/products"}>
               <button className="bg-pink-500 text-white py-3 px-6 rounded-md shadow-md text-sm hover:bg-pink-600 transition">
                 Shop Now
               </button>
+              </Link>
             </div>
 
             {/* Sofa Section */}

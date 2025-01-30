@@ -63,9 +63,11 @@ const About = () => {
             provide top-notch products and services for all your needs. Our
             history reflects years of dedication to our customers.
           </p>
+          <Link href={'/Contact'}>
           <button className="mt-6 bg-[#FB2E86] text-white px-6 py-3 rounded-md shadow-md hover:bg-red-600">
             Contact Us
           </button>
+          </Link>
         </div>
       </div>
 

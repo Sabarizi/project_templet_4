@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 
 const shoplist = [
@@ -82,6 +79,7 @@ const shoplist = [
 const ShopList = () => {
   return (
     <div className="font-sans text-[#151875]">
+      {/* Header / Breadcrumb */}
       <div className="py-12 px-8 bg-purple-50 h-44">
         <h1 className="max-w-6xl mx-auto text-4xl font-bold">Shop List</h1>
         <div className="max-w-6xl mx-auto flex items-center gap-2">
@@ -90,6 +88,8 @@ const ShopList = () => {
           <p className="text-[#FB2E86]">Shopping List</p>
         </div>
       </div>
+
+      {/* Filter / Sort / View Section */}
       <div className="max-w-6xl mx-auto py-4 flex flex-col lg:flex-row justify-between px-8">
         <div>
           <h1 className="text-2xl font-semibold font-[Josefin Sans] mb-2">
@@ -101,10 +101,7 @@ const ShopList = () => {
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
           <div className="flex items-center gap-2">
-            <label
-              htmlFor="perPage"
-              className="text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="perPage" className="text-sm font-medium text-gray-700">
               Per Page:
             </label>
             <input
@@ -115,10 +112,7 @@ const ShopList = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <label
-              htmlFor="sortBy"
-              className="text-sm font-medium text-gray-700"
-            >
+            <label htmlFor="sortBy" className="text-sm font-medium text-gray-700">
               Sort By:
             </label>
             <select
@@ -132,10 +126,7 @@ const ShopList = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <label
-              htmlFor="view"
-              className="text-sm font-medium focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
-            >
+            <label htmlFor="view" className="text-sm font-medium text-gray-700">
               View:
             </label>
             <input
@@ -147,6 +138,7 @@ const ShopList = () => {
         </div>
       </div>
 
+      {/* Product List */}
       <div className="max-w-6xl mx-auto p-8">
         <div className="space-y-6">
           {shoplist.map((product) => (
@@ -154,6 +146,7 @@ const ShopList = () => {
               key={product.id}
               className="flex flex-col lg:flex-row bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
             >
+              {/* Product Image */}
               <div className="lg:w-1/3 flex-shrink-0">
                 <Image
                   src={product.image}
@@ -164,6 +157,7 @@ const ShopList = () => {
                 />
               </div>
 
+              {/* Product Info */}
               <div className="lg:w-2/3 lg:ml-6 mt-4 lg:mt-0">
                 <div className="w-full flex justify-between items-center">
                   <h3 className="text-xl font-semibold">{product.name}</h3>
@@ -185,6 +179,7 @@ const ShopList = () => {
                 </div>
                 <p className="mt-2 text-gray-600 w-96">{product.description}</p>
 
+                {/* Star Rating */}
                 <div className="mt-2 flex items-center">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <span
@@ -200,26 +195,38 @@ const ShopList = () => {
                   ))}
                 </div>
 
+                {/* Action Buttons */}
                 <div className="mt-4 flex space-x-4">
-                  <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
-                    <AiOutlineShoppingCart size={24} />
-                  </button>
-                  <Link href="/cart">
+                  <Link href="/Cart">
+                    <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
+                      <AiOutlineShoppingCart size={24} />
+                    </button>
+                  </Link>
+
+                  <Link href="/wishlist">
                     <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
                       <AiOutlineHeart size={24} />
                     </button>
                   </Link>
-                  <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
-                    <FaSearch size={24} />
-                  </button>
+
+                  {/*
+                    Link to the Single Product Detail Page.
+                    Clicking the search icon will route to /Shop/[product.id]
+                  */}
+                  <Link href={`/Shop/${product.id}`}>
+                    <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
+                      <FaSearch size={24} />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
       <div className="py-8 flex justify-center items-center mt-7 mb-12">
-        
+        {/* Pagination or other content could go here */}
       </div>
     </div>
   );

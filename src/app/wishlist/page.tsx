@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useWishlist } from "../../context/WishlistContext";
 
 export default function WishlistPage() {
@@ -9,13 +9,15 @@ export default function WishlistPage() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold text-blue-900 mb-8 text-center">My Wishlist</h1>
+      <h1 className="text-3xl font-bold text-blue-900 mb-8 text-center">
+        My Wishlist
+      </h1>
       {wishlist.length === 0 ? (
         <p className="text-center text-gray-600">Your wishlist is empty.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {wishlist.map((product) => (
-            <div key={product._id} className="border p-4 rounded-lg shadow-md">
+            <div key={product.id} className="border p-4 rounded-lg shadow-md">
               <Image
                 src={product.image ? product.image : "/placeholder.png"}
                 alt={product.name}
@@ -24,10 +26,16 @@ export default function WishlistPage() {
                 className="rounded-lg"
               />
               <h2 className="text-lg font-bold mt-3">{product.name}</h2>
-              <p className="text-gray-600">{product.description}</p>
-              <p className="text-pink-500 font-medium">Price: ${product.price}</p>
+              {product.description && (
+                <p className="text-gray-600">{product.description}</p>
+              )}
+              {product.price !== undefined && (
+                <p className="text-pink-500 font-medium">
+                  Price: ${product.price}
+                </p>
+              )}
               <button
-                onClick={() => removeFromWishlist(product._id)}
+                onClick={() => removeFromWishlist(product.id)}
                 className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md"
               >
                 Remove

@@ -13,7 +13,7 @@ export default function ProductDetails({ product }: { product: any }) {
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart(); 
   const router = useRouter(); 
-  const isInWishlist = wishlist.some((item) => item._id === product._id);
+  const isInWishlist = wishlist.some((item) => item.id === product._id);
 
   const handleBuyNow = () => {
     addToCart({

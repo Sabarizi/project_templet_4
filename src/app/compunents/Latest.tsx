@@ -1,11 +1,16 @@
+"use client"; // <-- This makes it a Client Component
+
 import React from "react";
 import Image from "next/image";
-import { ShoppingCartIcon, HeartIcon, SearchIcon } from "@heroicons/react/outline";
+import AddToCartButton from "./AddToCartButton";
 
 const LatestProducts: React.FC = () => {
   const categories = ["New Arrival", "Best Seller", "Featured", "Special Offer"];
+
+  // Each product includes an "_id" for localStorage cart logic
   const products = [
     {
+      _id: "1",
       name: "Comfort Handy Craft",
       price: 42.0,
       originalPrice: 65.0,
@@ -13,6 +18,7 @@ const LatestProducts: React.FC = () => {
       image: "/image 1166.png",
     },
     {
+      _id: "2",
       name: "Comfort Handy Craft",
       price: 42.0,
       originalPrice: 65.0,
@@ -20,6 +26,7 @@ const LatestProducts: React.FC = () => {
       image: "/image 15.png",
     },
     {
+      _id: "3",
       name: "Comfort Handy Craft",
       price: 42.0,
       originalPrice: 65.0,
@@ -27,6 +34,7 @@ const LatestProducts: React.FC = () => {
       image: "/image 1168.png",
     },
     {
+      _id: "4",
       name: "Comfort Handy Craft",
       price: 42.0,
       originalPrice: 65.0,
@@ -34,6 +42,7 @@ const LatestProducts: React.FC = () => {
       image: "/image 23.png",
     },
     {
+      _id: "5",
       name: "Comfort Handy Craft",
       price: 42.0,
       originalPrice: 65.0,
@@ -41,6 +50,7 @@ const LatestProducts: React.FC = () => {
       image: "/image 32.png",
     },
     {
+      _id: "6",
       name: "Comfort Handy Craft",
       price: 42.0,
       originalPrice: 65.0,
@@ -77,10 +87,8 @@ const LatestProducts: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {products.map((product, index) => (
             <div
-              key={index}
-              className={`relative bg-white rounded-lg p-4 text-center group ${
-                product.sale && index === 1 ? "sale-product" : ""
-              }`}
+              key={product._id}
+              className={`relative bg-white rounded-lg p-4 text-center group`}
             >
               {/* Product Image */}
               <div className="w-full h-60 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
@@ -94,9 +102,14 @@ const LatestProducts: React.FC = () => {
               </div>
 
               {/* Sale Badge */}
-              {product.sale && index === 1 && (
+              {product.sale && (
                 <div className="absolute top-4 left-4">
-                  <Image src="/Group 27.png" alt="Sale Badge" width={65} height={65} />
+                  <Image
+                    src="/Group 27.png"
+                    alt="Sale Badge"
+                    width={65}
+                    height={65}
+                  />
                   <div className="absolute top-5 left-4 w-16 h-6 text-white text-xs font-semibold flex items-center justify-center transform -rotate-12">
                     Sale
                   </div>
@@ -118,23 +131,10 @@ const LatestProducts: React.FC = () => {
                 </div>
               </div>
 
-              {/* Hover Icons */}
-              {index === 1 && (
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <div className="flex space-x-2">
-                    <button className="bg-gray-200 p-2 rounded-full text-blue-700">
-                      <ShoppingCartIcon className="h-5 w-5" />
-                    </button>
-                    <button className="bg-gray-200 p-2 rounded-full text-blue-700">
-                      <HeartIcon className="h-5 w-5" />
-                    </button>
-                    <button className="bg-gray-200 p-2 rounded-full text-blue-700">
-                      <SearchIcon className="h-5 w-5" />
-                    </button>
-                  </div>
-                </div>
-                
-              )}
+              {/* Add to Cart Button */}
+              <div className="mt-4">
+                <AddToCartButton product={product} />
+              </div>
             </div>
           ))}
         </div>
