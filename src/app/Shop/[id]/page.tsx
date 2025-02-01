@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { AiOutlineHeart} from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import AddToCartButton from "@/app/compunents/AddToCartButton";
 
-
-// Same product list from your shop/page.tsx
+// Fixed `shoplist` by adding `_id` to each product
 const shoplist = [
   {
+    _id: "1", // Added _id
     id: 1,
     name: "Accumsan tincidunt",
     image: "/Rectangle 32.png",
@@ -20,6 +20,7 @@ const shoplist = [
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
   {
+    _id: "2",
     id: 2,
     name: "In nulla",
     image: "/Rectangle 32 (1).png",
@@ -30,6 +31,7 @@ const shoplist = [
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
   {
+    _id: "3",
     id: 3,
     name: "Vel sem",
     image: "/Rectangle 32 (2).png",
@@ -40,6 +42,7 @@ const shoplist = [
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
   {
+    _id: "4",
     id: 4,
     name: "Porttitor cum",
     image: "/Rectangle 32 (3).png",
@@ -50,6 +53,7 @@ const shoplist = [
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
   {
+    _id: "5",
     id: 5,
     name: "Nunc in",
     image: "/Rectangle 32 (4).png",
@@ -60,16 +64,18 @@ const shoplist = [
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
   {
+    _id: "6",
     id: 6,
     name: "Vitae facilisis",
     image: "/Rectangle 32 (5).png",
     price: "$26.00",
     oldPrice: "$52.00",
-    description: "consectetur adipiscing elit. Magna in.",
+    description: "Consectetur adipiscing elit. Magna in.",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
   {
+    _id: "7",
     id: 7,
     name: "Curabitur lectus",
     image: "/Rectangle 32 (7).png",
@@ -82,19 +88,15 @@ const shoplist = [
 ];
 
 export default function ShopProductPage() {
-  // We can access the `id` from the URL using next/navigation
-  const params= useParams();
-  // Convert it to a number
+  // Access `id` from the URL using Next.js `useParams()`
+  const params = useParams();
   let productId: number;
 
   if (Array.isArray(params.id)) {
-    // If it's an array, use the first element or handle error
     productId = parseInt(params.id[0], 10);
   } else {
-    // It's a single string
     productId = parseInt(params.id, 10);
   }
-  
 
   // Find the matching product
   const product = shoplist.find((p) => p.id === productId);
@@ -162,7 +164,7 @@ export default function ShopProductPage() {
           {/* Action Buttons */}
           <div className="flex gap-4">
             {/* Add to Cart */}
-            <div className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg--500 hover:text-white transition duration-200 transform hover:scale-105">
+            <div className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-500 hover:text-white transition duration-200 transform hover:scale-105">
               <AddToCartButton product={product} />
             </div>
 
@@ -172,7 +174,7 @@ export default function ShopProductPage() {
               Wishlist
             </button>
 
-            {/* Quick View (just as example) */}
+            {/* Quick View */}
             <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md flex items-center gap-2 hover:bg-blue-200 transition-all">
               <FaSearch size={20} />
               Quick View
