@@ -61,10 +61,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <aside className="w-1/4 p-4 border-r bg-gray-100">
-        {/* Product Brand */}
+    <div className="flex flex-col lg:flex-row">
+      {/* Sidebar - Hidden on Mobile, Shows on Larger Screens */}
+      <aside className="w-full lg:w-1/4 p-4 border-b lg:border-r bg-gray-100 lg:block">
         <div className="mb-6">
           <h2 className="text-lg font-bold mb-2">Product Brand</h2>
           {["Coaster Furniture", "Fusion Dot High Fashion", "Unique Furniture Restoration"].map(
@@ -77,7 +76,6 @@ export default function Home() {
           )}
         </div>
 
-        {/* Discount Offer */}
         <div className="mb-6">
           <h2 className="text-lg font-bold mb-2">Discount Offer</h2>
           {["20% Cashback", "5% Cashback Offer", "25% Discount Offer"].map((offer) => (
@@ -88,7 +86,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Rating Item */}
         <div className="mb-6">
           <h2 className="text-lg font-bold mb-2">Rating Item</h2>
           {[5, 4, 3].map((stars, index) => (
@@ -102,7 +99,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Categories */}
         <div>
           <h2 className="text-lg font-bold mb-2">Categories</h2>
           {["Prestashop", "Magento", "Bigcommerce", "osCommerce", "3dcart"].map((category) => (
@@ -115,28 +111,25 @@ export default function Home() {
       </aside>
 
       {/* Product Grid */}
-      <main className="w-3/4 p-4">
-        <h1 className="text-2xl font-bold mb-4">Product Grid with Features</h1>
-        <div className="space-y-4">
+      <main className="w-full lg:w-3/4 p-4">
+        <h1 className="text-2xl font-bold mb-4 text-center lg:text-left">Product Grid with Features</h1>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {products.map((product) => (
-            <div
-              key={product.id}
-              className="flex items-center border p-4 bg-white rounded-lg shadow-md"
-            >
+            <div key={product.id} className="border p-4 bg-white rounded-lg shadow-md">
               {/* Product Image */}
               <Image
                 src={product.image}
                 alt={product.name}
                 width={284}
                 height={197}
-                className="w-1/3 h-40 object-cover rounded-md"
+                className="w-full h-40 object-cover rounded-md"
               />
 
               {/* Product Details */}
-              <div className="ml-4 flex-1">
+              <div className="mt-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-bold">{product.name}</h3>
-                  {/* Colorful Dots */}
                   <div className="flex space-x-2">
                     <span className="w-3 h-3 bg-red-500 rounded-full"></span>
                     <span className="w-3 h-3 bg-green-500 rounded-full"></span>
@@ -151,50 +144,34 @@ export default function Home() {
                     .map((_, index) => (
                       <span
                         key={index}
-                        className={`${
-                          index < product.rating
-                            ? "text-yellow-500"
-                            : "text-gray-300"
-                        } text-lg`}
+                        className={`text-lg ${
+                          index < product.rating ? "text-yellow-500" : "text-gray-300"
+                        }`}
                       >
                         ★
                       </span>
                     ))}
                 </div>
 
-                <p className="text-sm text-gray-600 mt-2">
-                  {product.description}
-                </p>
+                <p className="text-sm text-gray-600 mt-2">{product.description}</p>
 
                 {/* Price and Old Price */}
                 <div className="mt-2">
-                  <span className="text-lg font-bold text-indigo-600">
-                    ${product.price}
-                  </span>
-                  <span className="ml-2 line-through text-gray-500">
-                    ${product.oldPrice}
-                  </span>
+                  <span className="text-lg font-bold text-indigo-600">${product.price}</span>
+                  <span className="ml-2 line-through text-gray-500">${product.oldPrice}</span>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="mt-2 flex space-x-2">
-                  {/* Example Link to Product Detail */}
                   <Link
                     href={`/ShopLeft/${product.id}`}
                     className="px-4 py-2 border rounded text-blue-600 hover:bg-blue-50"
                   >
                     View Details
                   </Link>
-
-                  <button className="text-gray-500 hover:text-indigo-600">
-                    ❤
-                  </button>
-                  <button className="text-gray-500 hover:text-indigo-600">
-                    🔍
-                  </button>
-                  <button className="text-gray-500 hover:text-indigo-600">
-                    🛒
-                  </button>
+                  <button className="text-gray-500 hover:text-indigo-600">❤</button>
+                  <button className="text-gray-500 hover:text-indigo-600">🔍</button>
+                  <button className="text-gray-500 hover:text-indigo-600">🛒</button>
                 </div>
               </div>
             </div>

@@ -78,155 +78,61 @@ const shoplist = [
 
 const ShopList = () => {
   return (
-    <div className="font-sans text-[#151875]">
+    <div className="font-sans text-[#151875] px-4 sm:px-6 lg:px-8">
       {/* Header / Breadcrumb */}
-      <div className="py-12 px-8 bg-purple-50 h-44">
-        <h1 className="max-w-6xl mx-auto text-4xl font-bold">Shop List</h1>
-        <div className="max-w-6xl mx-auto flex items-center gap-2">
-          <Link href={"/"}>Home</Link>
-          <p>Pages</p>
+      <div className="py-12 bg-purple-50 h-44 flex flex-col items-center justify-center text-center">
+        <h1 className="text-4xl font-bold">Shop List</h1>
+        <div className="flex items-center gap-2 text-sm">
+          <Link href="/">Home</Link>
+          <span>/</span>
           <p className="text-[#FB2E86]">Shopping List</p>
         </div>
       </div>
 
-      {/* Filter / Sort / View Section */}
-      <div className="max-w-6xl mx-auto py-4 flex flex-col lg:flex-row justify-between px-8">
-        <div>
-          <h1 className="text-2xl font-semibold font-[Josefin Sans] mb-2">
-            Ecommerce Accessories & Fashion Items
-          </h1>
-          <p className="text-sm text-gray-500 mb-4">
-            About 9,620 results (0.62 seconds)
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-          <div className="flex items-center gap-2">
-            <label htmlFor="perPage" className="text-sm font-medium text-gray-700">
-              Per Page:
-            </label>
-            <input
-              type="text"
-              id="perPage"
-              className="w-16 p-1 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
-            />
-          </div>
-
-          <div className="flex items-center gap-2">
-            <label htmlFor="sortBy" className="text-sm font-medium text-gray-700">
-              Sort By:
-            </label>
-            <select
-              id="sortBy"
-              className="p-1 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
-            >
-              <option value="bestMatch">Best Match</option>
-              <option value="priceLowHigh">Price: Low to High</option>
-              <option value="priceHighLow">Price: High to Low</option>
-            </select>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <label htmlFor="view" className="text-sm font-medium text-gray-700">
-              View:
-            </label>
-            <input
-              type="text"
-              id="view"
-              className="w-16 p-1 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-[#FB2E86]"
-            />
-          </div>
-        </div>
-      </div>
-
       {/* Product List */}
-      <div className="max-w-6xl mx-auto p-8">
-        <div className="space-y-6">
-          {shoplist.map((product) => (
-            <div
-              key={product.id}
-              className="flex flex-col lg:flex-row bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
-            >
-              {/* Product Image */}
-              <div className="lg:w-1/3 flex-shrink-0">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={500}
-                  height={400}
-                  className="w-full h-48 object-cover rounded-lg"
-                />
-              </div>
-
-              {/* Product Info */}
-              <div className="lg:w-2/3 lg:ml-6 mt-4 lg:mt-0">
-                <div className="w-full flex justify-between items-center">
-                  <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <div className="mt-2 flex gap-2">
-                    {product.colors.map((color, index) => (
-                      <span
-                        key={index}
-                        className={`w-3 h-3 ${color} rounded-full`}
-                      ></span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-4 flex items-center space-x-2">
-                  <span className="text-lg font-bold">{product.price}</span>
-                  <span className="text-red-500 line-through">
-                    {product.oldPrice}
-                  </span>
-                </div>
-                <p className="mt-2 text-gray-600 w-96">{product.description}</p>
-
-                {/* Star Rating */}
-                <div className="mt-2 flex items-center">
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <span
-                      key={index}
-                      className={`${
-                        index < product.rating
-                          ? "text-yellow-400"
-                          : "text-gray-300"
-                      } text-lg`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="mt-4 flex space-x-4">
-                  <Link href="/Cart">
-                    <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
-                      <AiOutlineShoppingCart size={24} />
-                    </button>
-                  </Link>
-
-                  <Link href="/wishlist">
-                    <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
-                      <AiOutlineHeart size={24} />
-                    </button>
-                  </Link>
-
-                  {/*
-                    Link to the Single Product Detail Page.
-                    Clicking the search icon will route to /Shop/[product.id]
-                  */}
-                  <Link href={`/Shop/${product.id}`}>
-                    <button className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg">
-                      <FaSearch size={24} />
-                    </button>
-                  </Link>
-                </div>
-              </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
+        {shoplist.map((product) => (
+          <div
+            key={product.id}
+            className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center"
+          >
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={300}
+              height={250}
+              className="w-full h-48 object-cover rounded-lg"
+            />
+            <h3 className="text-xl font-semibold mt-2">{product.name}</h3>
+            <p className="text-gray-500 text-sm">{product.description}</p>
+            <div className="flex gap-2 mt-2">
+              {product.colors.map((color, index) => (
+                <span key={index} className={`w-4 h-4 ${color} rounded-full`}></span>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="py-8 flex justify-center items-center mt-7 mb-12">
-        {/* Pagination or other content could go here */}
+            <div className="flex items-center justify-between w-full px-4 mt-3">
+              <span className="text-lg font-bold">{product.price}</span>
+              <span className="text-red-500 line-through">{product.oldPrice}</span>
+            </div>
+            <div className="flex gap-4 mt-3">
+              <Link href="/Cart">
+                <button className="p-2 rounded-full shadow-md bg-gray-100 hover:bg-gray-200">
+                  <AiOutlineShoppingCart size={20} />
+                </button>
+              </Link>
+              <Link href="/wishlist">
+                <button className="p-2 rounded-full shadow-md bg-gray-100 hover:bg-gray-200">
+                  <AiOutlineHeart size={20} />
+                </button>
+              </Link>
+              <Link href={`/Shop/${product.id}`}>
+                <button className="p-2 rounded-full shadow-md bg-gray-100 hover:bg-gray-200">
+                  <FaSearch size={20} />
+                </button>
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
