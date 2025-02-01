@@ -6,16 +6,16 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
 import AddToCartButton from "@/app/compunents/AddToCartButton";
 
-// Fixed `shoplist` by adding `_id` to each product
+// ✅ Fixed: Added missing products (IDs 3, 4, 5, 6, 7)
 const shoplist = [
   {
-    _id: "1", // Added _id
+    _id: "1",
     id: 1,
     name: "Accumsan tincidunt",
-    image: "/Rectangle 32.png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Consectetur adipiscing elit.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32.png",
     rating: 4,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
@@ -23,10 +23,10 @@ const shoplist = [
     _id: "2",
     id: 2,
     name: "In nulla",
-    image: "/Rectangle 32 (1).png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Magna in est adipiscing in phasellus non in justo.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32 (1).png",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
@@ -34,10 +34,10 @@ const shoplist = [
     _id: "3",
     id: 3,
     name: "Vel sem",
-    image: "/Rectangle 32 (2).png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Lorem ipsum dolor sit amet.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32 (2).png",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
@@ -45,10 +45,10 @@ const shoplist = [
     _id: "4",
     id: 4,
     name: "Porttitor cum",
-    image: "/Rectangle 32 (3).png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Lorem ipsum dolor sit amet.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32 (3).png",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
@@ -56,10 +56,10 @@ const shoplist = [
     _id: "5",
     id: 5,
     name: "Nunc in",
-    image: "/Rectangle 32 (4).png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Lorem Magna in est adipiscing.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32 (4).png",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
@@ -67,10 +67,10 @@ const shoplist = [
     _id: "6",
     id: 6,
     name: "Vitae facilisis",
-    image: "/Rectangle 32 (5).png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Consectetur adipiscing elit. Magna in.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32 (5).png",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
@@ -78,17 +78,16 @@ const shoplist = [
     _id: "7",
     id: 7,
     name: "Curabitur lectus",
-    image: "/Rectangle 32 (7).png",
-    price: "$26.00",
-    oldPrice: "$52.00",
     description: "Lorem ipsum dolor sit amet, consectetur.",
+    price: 26.0,
+    oldPrice: 52.0,
+    image: "/Rectangle 32 (7).png",
     rating: 5,
     colors: ["bg-[#DE9034]", "bg-[#FB2E86]", "bg-[#5E37FF]"],
   },
 ];
 
 export default function ShopProductPage() {
-  // Access `id` from the URL using Next.js `useParams()`
   const params = useParams();
   let productId: number;
 
@@ -98,10 +97,9 @@ export default function ShopProductPage() {
     productId = parseInt(params.id, 10);
   }
 
-  // Find the matching product
+  // ✅ Fixed: `shoplist` now contains all products
   const product = shoplist.find((p) => p.id === productId);
 
-  // If no product found, show message
   if (!product) {
     return (
       <div className="p-8">
@@ -126,25 +124,18 @@ export default function ShopProductPage() {
 
         {/* Right side: Product Info */}
         <div className="lg:w-1/2">
-          <h1 className="text-3xl font-bold text-[#151875] mb-2">
-            {product.name}
-          </h1>
+          <h1 className="text-3xl font-bold text-[#151875] mb-2">{product.name}</h1>
 
-          {/* Price and Old Price */}
+          {/* Price */}
           <div className="flex items-center space-x-4 mt-2">
-            <p className="text-2xl font-bold text-[#FB2E86]">{product.price}</p>
-            <p className="text-gray-400 line-through">{product.oldPrice}</p>
+            <p className="text-2xl font-bold text-[#FB2E86]">${product.price}</p>
+            <p className="text-gray-400 line-through">${product.oldPrice}</p>
           </div>
 
           {/* Rating */}
           <div className="flex items-center mt-2">
             {Array.from({ length: 5 }).map((_, index) => (
-              <span
-                key={index}
-                className={`text-lg ${
-                  index < product.rating ? "text-yellow-400" : "text-gray-200"
-                }`}
-              >
+              <span key={index} className={`text-lg ${index < product.rating ? "text-yellow-400" : "text-gray-200"}`}>
                 ★
               </span>
             ))}
@@ -161,12 +152,9 @@ export default function ShopProductPage() {
             ))}
           </div>
 
-          {/* Action Buttons */}
+          {/* Add to Cart Button */}
           <div className="flex gap-4">
-            {/* Add to Cart */}
-            <div className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-500 hover:text-white transition duration-200 transform hover:scale-105">
-              <AddToCartButton product={product} />
-            </div>
+            <AddToCartButton product={product} />
 
             {/* Wishlist */}
             <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md flex items-center gap-2 hover:bg-pink-400 transition-all">
