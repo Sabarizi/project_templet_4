@@ -88,71 +88,49 @@ const ShopList = () => {
       </div>
 
       {/* Sorting Options */}
-      <div className="flex items-center justify-between py-4 px-6 bg-gray-50 shadow-sm">
-        <div className="flex items-center gap-2">
-          <label htmlFor="per-page" className="text-sm text-gray-600">
-            Per Page:
-          </label>
-          <input
-            id="per-page"
-            type="text"
-            className="border rounded px-2 py-1 text-sm focus:outline-none"
-          />
+      <div className="flex flex-col sm:flex-row sm:justify-between py-4 px-6 bg-gray-50 shadow-sm">
+        <div className="flex items-center gap-2 mb-4 sm:mb-0">
+          <label htmlFor="per-page" className="text-sm text-gray-600">Per Page:</label>
+          <input id="per-page" type="text" className="border rounded px-2 py-1 text-sm focus:outline-none" />
         </div>
-        <div className="flex items-center gap-2">
-          <label htmlFor="sort-by" className="text-sm text-gray-600">
-            Sort By:
-          </label>
-          <select
-            id="sort-by"
-            className="border rounded px-2 py-1 text-sm focus:outline-none"
-          >
+        <div className="flex items-center gap-2 mb-4 sm:mb-0">
+          <label htmlFor="sort-by" className="text-sm text-gray-600">Sort By:</label>
+          <select id="sort-by" className="border rounded px-2 py-1 text-sm focus:outline-none">
             <option>Best Match</option>
             <option>Price Low to High</option>
             <option>Price High to Low</option>
           </select>
         </div>
         <div className="flex items-center gap-2">
-          <label htmlFor="view" className="text-sm text-gray-600">
-            View:
-          </label>
-          <input
-            id="view"
-            type="text"
-            className="border rounded px-2 py-1 text-sm focus:outline-none"
-          />
+          <label htmlFor="view" className="text-sm text-gray-600">View:</label>
+          <input id="view" type="text" className="border rounded px-2 py-1 text-sm focus:outline-none" />
         </div>
       </div>
 
       {/* Product List */}
-      <div className="space-y-4n py-8">
+      <div className="space-y-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {shoplist.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white p-6 rounded-lg shadow-md flex gap-6 items-center hover:shadow-lg transition-shadow"
-          >
+          <div key={product.id} className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center hover:shadow-lg transition-shadow">
             {/* Product Image */}
             <Image
               src={product.image}
               alt={product.name}
               width={250}
               height={250}
-              className="w-300 h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
             />
 
             {/* Product Details */}
-            <div className="flex-1">
+            <div className="flex-1 text-center mt-4">
               <h3 className="text-lg font-semibold">{product.name}</h3>
               <p className="text-gray-500 text-sm mt-1">{product.description}</p>
 
               {/* Rating */}
-              <div className="flex items-center mt-2">
+              <div className="flex items-center justify-center mt-2">
                 {Array.from({ length: 5 }).map((_, index) => (
                   <span
                     key={index}
-                    className={`text-lg ${
-                      index < product.rating ? "text-yellow-400" : "text-gray-200"
-                    }`}
+                    className={`text-lg ${index < product.rating ? "text-yellow-400" : "text-gray-200"}`}
                   >
                     ★
                   </span>
@@ -160,14 +138,14 @@ const ShopList = () => {
               </div>
 
               {/* Price */}
-              <div className="flex items-center gap-4 mt-2">
+              <div className="flex items-center justify-center gap-4 mt-2">
                 <span className="text-lg font-bold text-[#151875]">{product.price}</span>
                 <span className="text-red-500 line-through">{product.oldPrice}</span>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex justify-center gap-4 mt-4">
               <div className="flex gap-2">
                 {product.colors.map((color, index) => (
                   <span key={index} className={`w-4 h-4 ${color} rounded-full`}></span>
