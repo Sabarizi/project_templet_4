@@ -13,6 +13,7 @@ export default function Navbar() {
   const router = useRouter();
   const { cart } = useCart();
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  
   const [wishlistCount] = useState<number>(2);
   const [hydrated, setHydrated] = useState(false);
   useEffect(() => setHydrated(true), []);
@@ -44,6 +45,7 @@ export default function Navbar() {
           </div>
         </div>
         <div className="flex space-x-4">
+          
           <a href="/Login" className="flex items-center">
             Log in <GoPerson className="ml-1" />
           </a>

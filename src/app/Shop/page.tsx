@@ -125,7 +125,7 @@ const ShopList = () => {
       </div>
 
       {/* Product List */}
-      <div className="space-y-4 py-8">
+      <div className="space-y-4n py-8">
         {shoplist.map((product) => (
           <div
             key={product.id}

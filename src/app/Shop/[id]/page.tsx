@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { AiOutlineHeart } from "react-icons/ai";
-import { FaSearch } from "react-icons/fa";
+
 import AddToCartButton from "@/app/compunents/AddToCartButton";
 
-// ✅ Fixed: Added missing products (IDs 3, 4, 5, 6, 7)
+
 const shoplist = [
   {
     _id: "1",
@@ -117,7 +117,7 @@ export default function ShopProductPage() {
             src={product.image}
             alt={product.name}
             width={500}
-            height={400}
+            height={500}
             className="w-full h-auto object-cover rounded-lg"
           />
         </div>
@@ -162,11 +162,7 @@ export default function ShopProductPage() {
               Wishlist
             </button>
 
-            {/* Quick View */}
-            <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md flex items-center gap-2 hover:bg-blue-200 transition-all">
-              <FaSearch size={20} />
-              Quick View
-            </button>
+           
           </div>
         </div>
       </div>
